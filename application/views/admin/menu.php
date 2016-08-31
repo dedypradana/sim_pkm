@@ -3,7 +3,7 @@
 
     <div class="sidebar-header">
         <div class="sidebar-title">
-            Navigation
+            <?php echo strtoupper(@$this->admin['tipe']);?>
         </div>
         <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
             <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -20,10 +20,11 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    <?php if($this->admin['tipe']=='administrator'){ ?>
                     <li class="nav-parent <?php if($this->s1=='admin_master'){echo 'nav-expanded nav-active';}?>">
                         <a>
                             <i class="fa fa-database" aria-hidden="true"></i>
-                            <span>Master Data</span>
+                            <span>Master User</span>
                         </a>
                         <ul class="nav nav-children">
                             <li <?php if($this->s2=='master_administrator'){echo 'class="nav-active"';}?>>
@@ -31,18 +32,19 @@
                                     Administrator
                                 </a>
                             </li>
-                            <li>
-                                <a href="pages-signin.html">
+                            <li <?php if($this->s2=='master_dosen'){echo 'class="nav-active"';}?>>
+                                <a href="<?php echo base_url('admin_master/master_dosen');?>">
                                     Dosen
                                 </a>
                             </li>
-                            <li>
-                                <a href="pages-recover-password.html">
+                            <li <?php if($this->s2=='master_mahasiswa'){echo 'class="nav-active"';}?>>
+                                <a href="<?php echo base_url('admin_master/master_mahasiswa');?>">
                                     Mahasiswa
                                 </a>
                             </li>
                         </ul>
                     </li>
+                    <?php } ?>
                 </ul>
             </nav>
 

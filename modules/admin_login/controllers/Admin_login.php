@@ -35,8 +35,14 @@ class Admin_login extends CI_Controller {
     }
     
     public function logout() {
-        session_destroy();
-        redirect('admin_login');
+        $sesi = $this->session->userdata('admin_login');
+        if($sesi['tipe']=='administrator'){
+            session_destroy();
+            redirect('admin_login');
+        }else{
+            session_destroy();
+            redirect();
+        }
     }
     
 }

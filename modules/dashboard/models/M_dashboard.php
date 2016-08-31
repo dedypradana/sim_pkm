@@ -4,27 +4,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_dashboard extends CI_Model {
 
-    function addSubscriber($param){
-        $data = array(
-           'email'  => $param['email'],
-           'ip'     => $param['ip'],
-           'os'     => $param['os'],
-           'build'  => $param['date']
-        );
-        $this->db->insert('master_subscriber', $data); 
-        return true;
-    }
-    function getPortofolio(){
-        $this->db->select('*');
-        $this->db->from('portofolio');
-        $this->db->order_by("id", "desc"); 
-        $this->db->limit(6);
-        $query = $this->db->get();
-        $ret = $query->result();
-        if ($ret) {
-            return $ret;
+    public function check_login($username = '', $password = '') {
+        $this->db->where('username', $username);
+        $this->db->where('password', encode($password));
+        $exec = $this->db->get('master_mahasiswa');
+        if ($exec->num_rows() > 0) {
+            $dt = $exec->result_array();
+            $data = $dt[0];
+            $data['tipe'] = 'mahasiswa';
+            return $data;
         } else {
-            return false;
+            $this->db->where('username', $username);
+            $this->db->where('password', encode($password));
+            $exec1 = $this->db->get('master_dosen');
+            if ($exec1->num_rows() > 0) {
+                $dt = $exec1->result_array();
+                $data = $dt[0];
+                $data['tipe'] = 'dosen';
+                return $data;
+            } else {
+                return FALSE;
+            }
         }
     }
 

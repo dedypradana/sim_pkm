@@ -1,41 +1,58 @@
-<!-- BEGIN HEADER -->
-<?php 
-// Get Segment
-$sg1 = $this->uri->segment(1);
-$sg2 = $this->uri->segment(2);
-?>
-<div class="header">
-    <div class="container">
-        <a class="site-logo" href="<?php echo base_url('dashboard'); ?>"><img src="<?php echo base_url(); ?>assets/uploads/img/logo-corp.png" alt="Employee Engagement Survey"></a>
-        <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
-        <!-- BEGIN NAVIGATION -->
-        <div class="header-navigation pull-right font-transform-inherit">
-            <ul>
-                <li class="<?php if($sg1=='dashboard'){echo 'active';}?>">
-                    <a href="<?php echo base_url('dashboard'); ?>">Homepage</a>
-                </li>
-                <li class="<?php if($sg1=='survey'){echo 'active';}?>">
-                    <a href="<?php echo base_url('survey'); ?>">Survey Area</a>
-                </li>
-                <!-- BEGIN TOP SEARCH -->
-                <li class="menu-search">
-                    <span class="sep"></span>
-                    <i class="fa fa-search search-btn"></i>
-                    <div class="search-box">
-                        <form action="#">
-                            <div class="input-group">
-                                <input type="text" placeholder="Search" class="form-control">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="submit">Search</button>
-                                </span>
+<nav class="nav-main mega-menu">
+    <ul class="nav nav-pills nav-main" id="mainMenu">
+        <li class="active">
+            <a href="shortcodes.html">Beranda</a>
+        </li>
+        <li class="">
+            <a href="shortcodes.html">Pengumuman</a>
+        </li>
+        <li class="">
+            <a href="shortcodes.html">Tentang Kami</a>
+        </li>
+        <li class="">
+            <a href="shortcodes.html">Bantuan</a>
+        </li>
+        <li class="dropdown mega-menu-item mega-menu-signin signin" id="">
+            <a class="dropdown-toggle" href="<?php base_url();?>">
+                <i class="fa fa-user"></i> Sign In
+                <i class="fa fa-angle-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="mega-menu-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="signin-form">
+                                    <span class="mega-menu-sub-title">Sign In</span>
+                                    <form action="<?php echo base_url('dashboard/auth_login');?>" method="post">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <label>Username or E-mail Address</label>
+                                                    <input type="text" id="uname" name="username" value="" class="form-control input-lg">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <label>Password</label>
+                                                    <input type="password" id="passwd" name="passwd" value="" class="form-control input-lg">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="submit" value="Login" class="btn btn-primary pull-right">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                        </form>
-                    </div> 
+                        </div>
+                    </div>
                 </li>
-                <!-- END TOP SEARCH -->
             </ul>
-        </div>
-        <!-- END NAVIGATION -->
-    </div>
-</div>
-<!-- Header END -->
+        </li>
+    </ul>
+</nav>

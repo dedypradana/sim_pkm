@@ -166,13 +166,17 @@ function nilai_maks($tabel = '', $field = '') {
     return $no;
 }
 
-function tgl_indo($tgl) {
-    $ubah = gmdate($tgl, time() + 60 * 60 * 8);
-    $pecah = explode("-", $ubah);
-    $tanggal = $pecah[2];
-    $bulan = bulan($pecah[1]);
-    $tahun = $pecah[0];
-    return $tanggal . ' ' . $bulan . ' ' . $tahun;
+function tgl_indo($tgl='') {
+    if($tgl){
+        $ubah = gmdate($tgl, time() + 60 * 60 * 8);
+        $pecah = explode("-", $ubah);
+        $tanggal = $pecah[2];
+        $bulan = bulan($pecah[1]);
+        $tahun = $pecah[0];
+        return $tanggal . ' ' . $bulan . ' ' . $tahun;
+    }else{
+        return '';
+    }
 }
 
 function bulan($bln) {

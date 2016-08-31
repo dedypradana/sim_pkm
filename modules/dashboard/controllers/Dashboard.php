@@ -14,23 +14,35 @@ class Dashboard extends CI_Controller {
         $data['portofolio'] = array();
         $this->templates->display('index',$data);
     }
-    public function addSubscriber() {
-        $this->load->library('user_agent');
-        $ins['ip'] = $this->input->ip_address();
-        $ins['email'] = $this->input->post('email_subs');
-        $ins['os'] = $this->agent->agent_string();
-        $ins['date'] = date('Y-m-d H:i:s');
-        if($ins['email']){
-            $this->md->addSubscriber($ins);
-            redirect('dashboard/thanks');
-        }else{
-            redirect('dashboard');
+    
+    public function auth_login(){
+        $username = $this->input->post('username');
+        $password = $this->input->post('passwd');
+        if($username != '' && $password != ''){
+            $check = $this->md->check_login($username, $password);
+            if($check){
+                if($check['tipe']=='mahasiswa'){
+                    $sesi = array(
+                        'id'  => $check['id_mahasiswa'],
+                        'nama'=> $check['nama_mahasiswa'],
+                        'username' => $check['username'],
+                        'tipe' => 'mahasiswa'
+                    );
+                }else{
+                    $sesi = array(
+                        'id'  => $check['id_dosen'],
+                        'nama'=> $check['nama_dosen'],
+                        'username' => $check['username'],
+                        'tipe' => 'dosen'
+                    );
+                }
+                $this->session->set_userdata('admin_login', $sesi);
+                $this->session->set_flashdata('msg', succ_msg('Selamat Datang <b>'.$sesi['nama'].'</b> ...'));
+                redirect('admin_dashboard');
+            }else{
+                redirect();
+            }
         }
-        
-    }
-    public function thanks(){
-        $data['title_1'] = 'Well Documented';
-        $this->templates->display('thanks',$data);
     }
     
 }

@@ -181,7 +181,7 @@
                 </figure>
                 <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
                     <span class="name"><?php echo @$this->admin['nama']?></span>
-                    <span class="role">administrator</span>
+                    <span class="role"><?php echo @$this->admin['tipe']?></span>
                 </div>
 
                 <i class="fa custom-caret"></i>
