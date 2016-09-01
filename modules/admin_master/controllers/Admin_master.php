@@ -116,11 +116,12 @@ class Admin_master extends MY_Controller {
         }
     }
     public function doSaveAdmin(){
-        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('nip_admin', 'NIP', 'trim|is_unique[master_admin.nip_admin]');
+        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[master_admin.username]');
         $this->form_validation->set_rules('passwd', 'Password', 'required');
         $this->form_validation->set_rules('nama_admin', 'Nama Lengkap', 'required');
         $this->form_validation->set_rules('jenis_kelamin_admin', 'Gender', 'required');
-        $this->form_validation->set_rules('email_admin', 'Email', 'required');
+        $this->form_validation->set_rules('email_admin', 'Email', 'required|trim|is_unique[master_admin.email_admin]');
         if($this->form_validation->run()== FALSE){
             $this->session->set_flashdata('flash_data', warn_msg(validation_errors("<label class='error'>","</label>")));
             $this->session->set_flashdata('post_item', $this->input->post());
@@ -140,11 +141,12 @@ class Admin_master extends MY_Controller {
         }
     }
     public function doSaveMahasiswa(){
-        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('nim_mahasiswa', 'NIM', 'trim|is_unique[master_mahasiswa.nim_mahasiswa]');
+        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[master_mahasiswa.username]');
         $this->form_validation->set_rules('passwd', 'Password', 'required');
         $this->form_validation->set_rules('nama_mahasiswa', 'Nama Lengkap', 'required');
         $this->form_validation->set_rules('jenis_kelamin_mahasiswa', 'Gender', 'required');
-        $this->form_validation->set_rules('email_mahasiswa', 'Email', 'required');
+        $this->form_validation->set_rules('email_mahasiswa', 'Email', 'required|trim|is_unique[master_mahasiswa.email_mahasiswa]');
         if($this->form_validation->run()== FALSE){
             $this->session->set_flashdata('flash_data', warn_msg(validation_errors("<label class='error'>","</label>")));
             $this->session->set_flashdata('post_item', $this->input->post());
@@ -165,11 +167,12 @@ class Admin_master extends MY_Controller {
         }
     }
     public function doSaveDosen(){
-        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('nip_dosen', 'NIP', 'trim|is_unique[master_dosen.nip_dosen]');
+        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[master_dosen.username]');
         $this->form_validation->set_rules('passwd', 'Password', 'required');
         $this->form_validation->set_rules('nama_dosen', 'Nama Lengkap', 'required');
         $this->form_validation->set_rules('jenis_kelamin_dosen', 'Gender', 'required');
-        $this->form_validation->set_rules('email_dosen', 'Email', 'required');
+        $this->form_validation->set_rules('email_dosen', 'Email', 'required|trim|is_unique[master_dosen.email_dosen]');
         if($this->form_validation->run()== FALSE){
             $this->session->set_flashdata('flash_data', warn_msg(validation_errors("<label class='error'>","</label>")));
             $this->session->set_flashdata('post_item', $this->input->post());
