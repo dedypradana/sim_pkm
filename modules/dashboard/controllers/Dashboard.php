@@ -7,11 +7,12 @@ class Dashboard extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('M_dashboard','md');
+        $this->sesi = $this->session->userdata('admin_login');
     }
 
     public function index() {
-        $data['title_1'] = 'Well Documented';
-        $data['portofolio'] = array();
+        $data['title'] = 'Dashboard';
+        $data['title_small'] = 'Halaman Utama';
         $this->templates->display('index',$data);
     }
     
@@ -38,10 +39,12 @@ class Dashboard extends CI_Controller {
                 }
                 $this->session->set_userdata('admin_login', $sesi);
                 $this->session->set_flashdata('msg', succ_msg('Selamat Datang <b>'.$sesi['nama'].'</b> ...'));
-                redirect('admin_dashboard');
+                redirect('dashboard');
             }else{
                 redirect();
             }
+        }else{
+            redirect();
         }
     }
     

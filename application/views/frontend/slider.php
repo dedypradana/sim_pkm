@@ -1,230 +1,138 @@
-<!-- BEGIN SLIDER -->
-<div class="page-slider margin-bottom-40">
-    <div class="fullwidthbanner-container revolution-slider">
-        <div class="fullwidthabnner">
-            <ul id="revolutionul">
-                <!-- THE NEW SLIDE -->
-                <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="7000" data-thumb="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/thumbs/thumb2.jpg">
-                    <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
-                    <img src="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/bg1.jpg" alt="">
+<div class="slider-container">
+    <div class="slider" id="revolutionSlider" data-plugin-revolution-slider data-plugin-options='{"startheight": 500}'>
+        <ul>
+            <li data-transition="fade" data-slotamount="13" data-masterspeed="300" >
+                <img src="<?php echo base_url(); ?>assets/frontend/img/slides/slide-bg.jpg" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                <div class="tp-caption sft stb visible-lg"
+                     data-x="177"
+                     data-y="180"
+                     data-speed="300"
+                     data-start="1000"
+                     data-easing="easeOutExpo"><img src="<?php echo base_url(); ?>assets/frontend/img/slides/slide-title-border.png" alt=""></div>
 
-                    <div class="caption lft slide_title slide_item_left"
-                         data-x="30"
-                         data-y="105"
-                         data-speed="400"
-                         data-start="1500"
-                         data-easing="easeOutExpo">
-                        Engagement Survey
-                    </div>
-                    <div class="caption lft slide_subtitle slide_item_left"
-                         data-x="30"
-                         data-y="180"
-                         data-speed="400"
-                         data-start="2000"
-                         data-easing="easeOutExpo">
-                        Employee Engagement Survey
-                    </div>
-                    <div class="caption lft slide_desc slide_item_left"
-                         data-x="30"
-                         data-y="220"
-                         data-speed="400"
-                         data-start="2500"
-                         data-easing="easeOutExpo">
-                        We want to make it as easy as possible for you <br>
-                        to get at the knowledge you need to make smart, informed choices.
-                    </div>
-                    <a class="caption lft btn green slide_btn slide_item_left" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes"
-                       data-x="30"
-                       data-y="290"
-                       data-speed="400"
-                       data-start="3000"
-                       data-easing="easeOutExpo">
-                        Get Survey..
-                    </a>                        
-                    <div class="caption lfb"
-                         data-x="640" 
-                         data-y="55" 
-                         data-speed="700" 
-                         data-start="1000" 
-                         data-easing="easeOutExpo">
-                        <img src="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/man-winner.png" alt="Image 1">
-                    </div>
-                </li>
+                <div class="tp-caption top-label lfl stl"
+                     data-x="227"
+                     data-y="180"
+                     data-speed="300"
+                     data-start="500"
+                     data-easing="easeOutExpo">DO YOU NEED A NEW</div>
 
-                <!-- THE SECOND SLIDE -->
-                <li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-delay="9400" data-thumb="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/thumbs/thumb2.jpg">                        
-                    <img src="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/bg2.jpg" alt="">
-                    <div class="caption lfl slide_title slide_item_left"
-                         data-x="30"
-                         data-y="125"
-                         data-speed="400"
-                         data-start="3500"
-                         data-easing="easeOutExpo">
-                        Powerfull &amp; Clean
-                    </div>
-                    <div class="caption lfl slide_subtitle slide_item_left"
-                         data-x="30"
-                         data-y="200"
-                         data-speed="400"
-                         data-start="4000"
-                         data-easing="easeOutExpo">
-                        Responsive Survey &amp; Frontend Page
-                    </div>
-                    <div class="caption lfl slide_desc slide_item_left"
-                         data-x="30"
-                         data-y="245"
-                         data-speed="400"
-                         data-start="4500"
-                         data-easing="easeOutExpo">
-                        We offer round the clock support and spend every waking hour <br>
-                        striving to make their experience better.
-                    </div>                        
-                    <div class="caption lfr slide_item_right" 
-                         data-x="635" 
-                         data-y="105" 
-                         data-speed="1200" 
-                         data-start="1500" 
-                         data-easing="easeOutBack">
-                        <img src="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/mac.png" alt="Image 1">
-                    </div>
-                    <div class="caption lfr slide_item_right" 
-                         data-x="580" 
-                         data-y="245" 
-                         data-speed="1200" 
-                         data-start="2000" 
-                         data-easing="easeOutBack">
-                        <img src="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/ipad.png" alt="Image 1">
-                    </div>
-                    <div class="caption lfr slide_item_right" 
-                         data-x="735" 
-                         data-y="290" 
-                         data-speed="1200" 
-                         data-start="2500" 
-                         data-easing="easeOutBack">
-                        <img src="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/iphone.png" alt="Image 1">
-                    </div>
-                    <div class="caption lfr slide_item_right" 
-                         data-x="835" 
-                         data-y="230" 
-                         data-speed="1200" 
-                         data-start="3000" 
-                         data-easing="easeOutBack">
-                        <img src="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/macbook.png" alt="Image 1">
-                    </div>
-                    <div class="caption lft slide_item_right" 
-                         data-x="865" 
-                         data-y="45" 
-                         data-speed="500" 
-                         data-start="5000" 
-                         data-easing="easeOutBack">
-                        <img src="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/hint1-red.png" id="rev-hint1" alt="Image 1">
-                    </div>                        
-                    <div class="caption lfb slide_item_right" 
-                         data-x="355" 
-                         data-y="355" 
-                         data-speed="500" 
-                         data-start="5500" 
-                         data-easing="easeOutBack">
-                        <img src="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/hint2-red.png" id="rev-hint2" alt="Image 1">
-                    </div>
-                </li>
+                <div class="tp-caption sft stb visible-lg"
+                     data-x="477"
+                     data-y="180"
+                     data-speed="300"
+                     data-start="1000"
+                     data-easing="easeOutExpo"><img src="<?php echo base_url(); ?>assets/frontend/img/slides/slide-title-border.png" alt=""></div>
 
-                <!-- THE THIRD SLIDE -->
-                <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="9400" data-thumb="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/thumbs/thumb2.jpg">
-                    <img src="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/bg3.jpg" alt="">
-                    <div class="caption lfl slide_item_left" 
-                         data-x="30" 
-                         data-y="95" 
-                         data-speed="400" 
-                         data-start="1500" 
-                         data-easing="easeOutBack">
-                        <img src="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/ees.png" width="420" height="240" style="border:0" > 
-                    </div>
-                    <div class="caption lfr slide_title"
-                         data-x="470"
-                         data-y="100"
-                         data-speed="400"
-                         data-start="2000"
-                         data-easing="easeOutExpo">
-                        Following Through
-                    </div>
-                    <div class="caption lfr slide_subtitle"
-                         data-x="470"
-                         data-y="170"
-                         data-speed="400"
-                         data-start="2500"
-                         data-easing="easeOutExpo">
-                        Employee Engagement Survey
-                    </div>
-                    <div class="caption lfr slide_desc"
-                         data-x="470"
-                         data-y="220"
-                         data-speed="400"
-                         data-start="3000"
-                         data-easing="easeOutExpo">
-                        We believe everyone deserves easy access to the information <br>
-                        they need to make better decisions.
-                    </div>
-                    <a class="caption lfr btn yellow slide_btn" href=""
-                       data-x="470"
-                       data-y="280"
-                       data-speed="400"
-                       data-start="3500"
-                       data-easing="easeOutExpo">
-                        Take Survey..
-                    </a>
-                </li>               
+                <div class="tp-caption main-label sft stb"
+                     data-x="135"
+                     data-y="210"
+                     data-speed="300"
+                     data-start="1500"
+                     data-easing="easeOutExpo">WEB DESIGN?</div>
 
-                <!-- THE FORTH SLIDE -->
-                <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="9400" data-thumb="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/thumbs/thumb2.jpg">
-                    <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
-                    <img src="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/bg4.jpg" alt="">                        
-                    <div class="caption lft slide_title"
-                         data-x="30"
-                         data-y="105"
-                         data-speed="400"
-                         data-start="1500"
-                         data-easing="easeOutExpo">
-                        Engagement Survey
-                    </div>
-                    <div class="caption lft slide_subtitle"
-                         data-x="30"
-                         data-y="180"
-                         data-speed="400"
-                         data-start="2000"
-                         data-easing="easeOutExpo">
-                        Data Warehouse Integration
-                    </div>
-                    <div class="caption lft slide_desc"
-                         data-x="30"
-                         data-y="225"
-                         data-speed="400"
-                         data-start="2500"
-                         data-easing="easeOutExpo">
-                        Full support and maintenance.<br>Free email, LDAP configuration
-                    </div>
-                    <a class="caption lft slide_btn btn red slide_item_left" href="http://www.keenthemes.com/preview/index.php?theme=metronic_admin" target="_blank" 
-                       data-x="30"
-                       data-y="300"
-                       data-speed="400"
-                       data-start="3000"
-                       data-easing="easeOutExpo">
-                        Lets take survey..
-                    </a>                        
-                    <div class="caption lft start"  
-                         data-x="670" 
-                         data-y="150" 
-                         data-speed="400" 
-                         data-start="2000" 
-                         data-easing="easeOutBack"  >
-                        <img src="<?php echo base_url(); ?>assets/frontend/pages/img/revolutionslider/survey-banner.jpg" alt="Image 2" width="450px;">
-                    </div>                        
-                </li>
-            </ul>
-            <div class="tp-bannertimer tp-bottom"></div>
-        </div>
-        <div class="tp-bannertimer tp-bottom"></div>
+                <div class="tp-caption bottom-label sft stb"
+                     data-x="185"
+                     data-y="280"
+                     data-speed="500"
+                     data-start="2000"
+                     data-easing="easeOutExpo">Check out our options and features.</div>
+
+                <div class="tp-caption randomrotate"
+                     data-x="905"
+                     data-y="248"
+                     data-speed="500"
+                     data-start="2500"
+                     data-easing="easeOutBack"><img src="<?php echo base_url(); ?>assets/frontend/img/slides/slide-concept-2-1.png" alt=""></div>
+
+                <div class="tp-caption sfb"
+                     data-x="955"
+                     data-y="200"
+                     data-speed="400"
+                     data-start="3000"
+                     data-easing="easeOutBack"><img src="<?php echo base_url(); ?>assets/frontend/img/slides/slide-concept-2-2.png" alt=""></div>
+
+                <div class="tp-caption sfb"
+                     data-x="925"
+                     data-y="170"
+                     data-speed="700"
+                     data-start="3150"
+                     data-easing="easeOutBack"><img src="<?php echo base_url(); ?>assets/frontend/img/slides/slide-concept-2-3.png" alt=""></div>
+
+                <div class="tp-caption sfb"
+                     data-x="875"
+                     data-y="130"
+                     data-speed="1000"
+                     data-start="3250"
+                     data-easing="easeOutBack"><img src="<?php echo base_url(); ?>assets/frontend/img/slides/slide-concept-2-4.png" alt=""></div>
+
+                <div class="tp-caption sfb"
+                     data-x="605"
+                     data-y="80"
+                     data-speed="600"
+                     data-start="3450"
+                     data-easing="easeOutExpo"><img src="<?php echo base_url(); ?>assets/frontend/img/slides/slide-concept-2-5.png" alt=""></div>
+
+                <div class="tp-caption blackboard-text lfb "
+                     data-x="635"
+                     data-y="300"
+                     data-speed="500"
+                     data-start="3450"
+                     data-easing="easeOutExpo" style="font-size: 37px;">Think</div>
+
+                <div class="tp-caption blackboard-text lfb "
+                     data-x="660"
+                     data-y="350"
+                     data-speed="500"
+                     data-start="3650"
+                     data-easing="easeOutExpo" style="font-size: 47px;">Outside</div>
+
+                <div class="tp-caption blackboard-text lfb "
+                     data-x="685"
+                     data-y="400"
+                     data-speed="500"
+                     data-start="3850"
+                     data-easing="easeOutExpo" style="font-size: 32px;">The box :)</div>
+            </li>
+            <li data-transition="fade" data-slotamount="5" data-masterspeed="1000" >
+
+                <img src="<?php echo base_url(); ?>assets/frontend/img/slides/slide-bg.jpg" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+
+                <div class="tp-caption sft stb"
+                     data-x="155"
+                     data-y="100"
+                     data-speed="600"
+                     data-start="100"
+                     data-easing="easeOutExpo"><img src="<?php echo base_url(); ?>assets/frontend/img/slides/slide-concept.png" alt=""></div>
+
+                <div class="tp-caption blackboard-text sft stb"
+                     data-x="285"
+                     data-y="180"
+                     data-speed="900"
+                     data-start="1000"
+                     data-easing="easeOutExpo" style="font-size: 30px;">easy to</div>
+
+                <div class="tp-caption blackboard-text sft stb"
+                     data-x="285"
+                     data-y="220"
+                     data-speed="900"
+                     data-start="1200"
+                     data-easing="easeOutExpo" style="font-size: 40px;">customize!</div>
+
+                <div class="tp-caption main-label sft stb"
+                     data-x="685"
+                     data-y="190"
+                     data-speed="300"
+                     data-start="900"
+                     data-easing="easeOutExpo">DESIGN IT!</div>
+
+                <div class="tp-caption bottom-label sft stb"
+                     data-x="685"
+                     data-y="250"
+                     data-speed="500"
+                     data-start="2000"
+                     data-easing="easeOutExpo">Create slides with brushes and fonts.</div>
+            </li>
+        </ul>
     </div>
 </div>
-</div>
-<!-- END SLIDER -->

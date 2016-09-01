@@ -26,7 +26,6 @@ class Templates {
         $data['_content'] = $this->CI->load->view($template, $data, TRUE);
         $data['_header'] = $this->CI->load->view('admin/header', $data, TRUE);
         $data['_menu'] = $this->CI->load->view('admin/menu', $data, TRUE);
-        $data['_footer'] = $this->CI->load->view('admin/footer', $data, TRUE);
         $data['_sidebar'] = $this->CI->load->view('admin/sidebar', $data, TRUE);
         $this->CI->load->view('admin/template', $data);
     }
