@@ -39,7 +39,7 @@ class Dashboard extends CI_Controller {
                 }
                 $this->session->set_userdata('admin_login', $sesi);
                 $this->session->set_flashdata('msg', succ_msg('Selamat Datang <b>'.$sesi['nama'].'</b> ...'));
-                redirect('dashboard');
+                redirect('admin_dashboard');
             }else{
                 redirect();
             }

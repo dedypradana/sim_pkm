@@ -2,6 +2,6 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_pengumuman extends CI_Model {
+class M_akun extends CI_Model {
 
 }
