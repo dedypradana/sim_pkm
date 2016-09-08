@@ -16,7 +16,7 @@
                 <table class="table table-bordered table-striped table-hover mb-none" id="datatable-default">
                     <thead>
                         <tr>
-                            <th>NIP</th>
+                            <th>NIM</th>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Username</th>
