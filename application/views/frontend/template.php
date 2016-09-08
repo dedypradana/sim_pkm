@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/frontend/vendor/owlcarousel/owl.carousel.min.css" media="screen">
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/frontend/vendor/owlcarousel/owl.theme.default.min.css" media="screen">
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/frontend/vendor/magnific-popup/magnific-popup.css" media="screen">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/vendor/bootstrap-datepicker/css/datepicker3.css" />
         <!-- Theme CSS -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/frontend/css/theme.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/frontend/css/theme-elements.css">
@@ -40,6 +41,7 @@
         <script src="<?php echo base_url(); ?>assets/frontend/vendor/jquery.easing/jquery.easing.js"></script>
         <script src="<?php echo base_url(); ?>assets/frontend/vendor/jquery-cookie/jquery-cookie.js"></script>
         <script src="<?php echo base_url(); ?>assets/frontend/vendor/bootstrap/bootstrap.js"></script>
+        <script src="<?php echo base_url(); ?>assets/backend/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
         <script src="<?php echo base_url(); ?>assets/frontend/vendor/common/common.js"></script>
         <script src="<?php echo base_url(); ?>assets/frontend/vendor/jquery.validation/jquery.validation.js"></script>
         <script src="<?php echo base_url(); ?>assets/frontend/vendor/jquery.stellar/jquery.stellar.js"></script>

@@ -3,8 +3,8 @@
         <li class="<?php if ($this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '') {echo 'active';} ?>">
             <a href="<?php echo base_url('dashboard'); ?>">Dashboard</a>
         </li>
-        <li class="<?php if ($this->uri->segment(1) == 'pengumuman') {echo 'active';} ?>">
-            <a href="<?php echo base_url('pengumuman'); ?>">Pengumuman</a>
+        <li class="<?php if ($this->uri->segment(1) == 'daftar_akun') {echo 'active';} ?>">
+            <a href="<?php echo base_url('daftar_akun'); ?>">Daftar Akun</a>
         </li>
         <li class="<?php if ($this->uri->segment(1) == 'tentang_kami') {echo 'active';} ?>">
             <a href="<?php echo base_url('tentang_kami'); ?>">Tentang Kami</a>

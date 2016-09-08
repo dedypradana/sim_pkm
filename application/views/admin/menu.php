@@ -20,6 +20,12 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    <li class="<?php if($this->s1=='pendaftaran_pkm'){echo 'nav-active';}?>">
+                        <a href="<?php echo base_url('pendaftaran_pkm');?>">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                            <span>Pendaftaran PKM</span>
+                        </a>
+                    </li>
                     <?php if($this->admin['tipe']=='administrator'){ ?>
                     <li class="nav-parent <?php if($this->s1=='admin_master'){echo 'nav-expanded nav-active';}?>">
                         <a>
