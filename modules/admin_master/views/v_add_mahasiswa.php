@@ -103,6 +103,7 @@
                         <input type="text" name="handphone_mahasiswa" class="form-control" value="<?php echo @$mhs->handphone_mahasiswa;?>" placeholder="Telephone" />
                     </div>
                 </div>
+                <?php if($sesi == 'administrator'){ ?>
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="status_dosen">Status</label>
                     <div class="col-md-4">
@@ -112,12 +113,17 @@
                         </select>
                     </div>
                 </div>
+                <?php } ?>
             </div>
             <footer class="panel-footer">
                 <div class="row">
                     <div class="col-sm-9 col-sm-offset-3">
                         <button class="btn btn-primary">Submit</button>
+                        <?php if($sesi == 'administrator'){ ?>
                         <a href="<?php echo base_url('admin_master/master_mahasiswa');?>" class="btn btn-success">Cancel</a>
+                        <?php } else { ?>
+                        <button type="button" onclick="history.go(-1);" class="btn btn-success">Cancel</button>
+                        <?php } ?>
                     </div>
                 </div>
             </footer>

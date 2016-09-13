@@ -33,13 +33,13 @@
                                 <td><?php echo @$rec->username;?></td>
                                 <td><?php echo @$rec->jenis_kelamin_dosen;?></td>
                                 <td class="actions">
-                                    <a href="<?php echo base_url('admin_master/master_dosen/view/'.@$rec->id_dosen);?>" title="Detail" class="btn btn-default btn-sm btn-default">
+                                    <a href="<?php echo base_url('admin_master/master_dosen/view/'.encode(@$rec->id_dosen));?>" title="Detail" class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-search fa-1x"></i>
                                     </a>
-                                    <a href="<?php echo base_url('admin_master/master_dosen/edit/'.@$rec->id_dosen);?>" title="Edit"class="btn btn-default btn-sm btn-default">
+                                    <a href="<?php echo base_url('admin_master/master_dosen/edit/'.encode(@$rec->id_dosen));?>" title="Edit"class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <a href="<?php echo base_url('admin_master/master_dosen/delete/'.@$rec->id_dosen);?>" title="Delete" class="btn btn-default btn-sm btn-default">
+                                    <a href="<?php echo base_url('admin_master/master_dosen/delete/'.encode(@$rec->id_dosen));?>" title="Delete" class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-trash-o"></i>
                                     </a>
                                 </td>

@@ -1,7 +1,7 @@
 <!-- start: header -->
 <header class="header">
     <div class="logo-container">
-        <a href="../" class="logo">
+        <a href="<?php echo base_url(); ?>" class="logo">
             <img src="<?php echo base_url(); ?>assets/backend/images/logo.png" height="35" alt="Porto Admin" />
         </a>
         <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
@@ -191,7 +191,12 @@
                 <ul class="list-unstyled">
                     <li class="divider"></li>
                     <li>
-                        <a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fa fa-user"></i> My Profile</a>
+                        <?php $sesi = $this->session->userdata('admin_login');?>
+                        <?php if($sesi['tipe']=='mahasiswa'){ ?>
+                        <a role="menuitem" tabindex="-1" href="<?php echo base_url('admin_master/master_mahasiswa/view/'.encode($sesi['id']));?>"><i class="fa fa-user"></i> My Profile</a>
+                        <?php } else if($sesi['tipe']=='dosen') { ?>
+                        <a role="menuitem" tabindex="-1" href="<?php echo base_url('admin_master/master_dosen/view/'.encode($sesi['id']));?>"><i class="fa fa-user"></i> My Profile</a>
+                        <?php } ?>
                     </li>
                     <li>
                         <a role="menuitem" tabindex="-1" href="<?php echo base_url('admin_login/logout');?>"><i class="fa fa-power-off"></i> Logout</a>
