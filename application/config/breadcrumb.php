@@ -36,7 +36,7 @@ $config['multilang'] = FALSE;
  * then initial/home breadcrumb will disappear
  *
  */
-$config['set_home'] = "<a href='index.html'><i class='fa fa-home'></i></a>";
+$config['set_home'] = "<a href='".base_url('admin_dashboard')."'><i class='fa fa-home'></i></a>";
 
 /**
  * ------------------------

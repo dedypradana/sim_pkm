@@ -48,8 +48,10 @@ class Admin_master extends MY_Controller {
         }
     }
     public function master_dosen($action='',$id='') {
+        $id = decode($id);
         $data['title'] = 'Master Dosen';
         $data['dosen'] = $this->mgb->find('master_dosen','','','','id_dosen');
+        $data['sesi'] = $this->session->userdata('admin_login');
         if($data['dosen']){
             $data['dosen'] = $this->mgb->find('master_dosen','','','','id_dosen')->result();
         }
@@ -82,8 +84,10 @@ class Admin_master extends MY_Controller {
         }
     }
     public function master_mahasiswa($action='',$id='') {
+        $id = decode($id);
         $data['title'] = 'Master Mahasiswa';
         $data['mhs'] = $this->mgb->find('master_mahasiswa','','','','id_mahasiswa');
+        $data['sesi'] = $this->session->userdata('admin_login');
         if($data['mhs']){
             $data['mhs'] = $this->mgb->find('master_mahasiswa','','','','id_mahasiswa')->result();
         }
@@ -193,6 +197,7 @@ class Admin_master extends MY_Controller {
     }
     
     public function doEditDosen(){
+        $data['sesi'] = $this->session->userdata('admin_login');
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('passwd', 'Password', 'required');
         $this->form_validation->set_rules('nama_dosen', 'Nama Lengkap', 'required');
@@ -214,10 +219,15 @@ class Admin_master extends MY_Controller {
             }else{
                 $this->session->set_flashdata('flash_data', err_msg('Something went wrong, Please try again later.'));
             }
-            redirect('admin_master/master_dosen');
+            if($data['sesi']=='administrator'){
+                redirect('admin_master/master_dosen');
+            }else{
+                redirect('admin_master/master_dosen/view/'.  encode($this->input->post('id_dosen')));
+            }
         }
     }
     public function doEditMahasiswa(){
+        $data['sesi'] = $this->session->userdata('admin_login');
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('passwd', 'Password', 'required');
         $this->form_validation->set_rules('nama_mahasiswa', 'Nama Lengkap', 'required');
@@ -239,7 +249,11 @@ class Admin_master extends MY_Controller {
             }else{
                 $this->session->set_flashdata('flash_data', err_msg('Something went wrong, Please try again later.'));
             }
-            redirect('admin_master/master_mahasiswa');
+            if($data['sesi']=='administrator'){
+                redirect('admin_master/master_mahasiswa');
+            }else{
+                redirect('admin_master/master_mahasiswa/view/'.  encode($this->input->post('id_mahasiswa')));
+            }
         }
     }
     public function doEditAdmin(){

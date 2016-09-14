@@ -107,8 +107,10 @@
             <footer class="panel-footer">
                 <div class="row">
                     <div class="col-sm-9 col-sm-offset-3">
-                        <a href="<?php echo base_url('admin_master/master_dosen/edit/'.$id);?>"class="btn btn-primary">Edit</a>
+                        <a href="<?php echo base_url('admin_master/master_dosen/edit/'.encode($id));?>"class="btn btn-primary">Edit</a>
+                        <?php if($sesi['tipe'] == 'administrator'){ ?>
                         <a href="<?php echo base_url('admin_master/master_dosen');?>" class="btn btn-success">Kembali</a>
+                        <?php } ?>
                     </div>
                 </div>
             </footer>

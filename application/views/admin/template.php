@@ -31,6 +31,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/stylesheets/skins/default.css" />
         <!-- Theme Custom CSS -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/stylesheets/theme-custom.css">
+        <script src="<?php echo base_url(); ?>assets/backend/vendor/jquery/jquery.js"></script>
         <!-- Head Libs -->
         <script src="<?php echo base_url(); ?>assets/backend/vendor/modernizr/modernizr.js"></script>
     </head>
@@ -54,7 +55,6 @@
             <?php echo $_sidebar; ?>
         </section>
         <!-- Vendor -->
-        <script src="<?php echo base_url(); ?>assets/backend/vendor/jquery/jquery.js"></script>
         <script src="<?php echo base_url(); ?>assets/backend/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
         <script src="<?php echo base_url(); ?>assets/backend/vendor/bootstrap/js/bootstrap.js"></script>
         <script src="<?php echo base_url(); ?>assets/backend/vendor/nanoscroller/nanoscroller.js"></script>

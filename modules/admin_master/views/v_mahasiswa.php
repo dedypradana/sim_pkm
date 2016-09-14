@@ -35,13 +35,13 @@
                                 <td><?php echo @$rec->jurusan;?></td>
                                 <td><?php if(@$rec->status==1){echo 'Active';}else{echo 'Non Active';}?></td>
                                 <td class="actions">
-                                    <a href="<?php echo base_url('admin_master/master_mahasiswa/view/'.@$rec->id_mahasiswa);?>" title="Detail" class="btn btn-default btn-sm btn-default">
+                                    <a href="<?php echo base_url('admin_master/master_mahasiswa/view/'.encode(@$rec->id_mahasiswa));?>" title="Detail" class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-search fa-1x"></i>
                                     </a>
-                                    <a href="<?php echo base_url('admin_master/master_mahasiswa/edit/'.@$rec->id_mahasiswa);?>" title="Edit"class="btn btn-default btn-sm btn-default">
+                                    <a href="<?php echo base_url('admin_master/master_mahasiswa/edit/'.encode(@$rec->id_mahasiswa));?>" title="Edit"class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <a href="<?php echo base_url('admin_master/master_mahasiswa/delete/'.@$rec->id_mahasiswa);?>" title="Delete" class="btn btn-default btn-sm btn-default">
+                                    <a href="<?php echo base_url('admin_master/master_mahasiswa/delete/'.encode(@$rec->id_mahasiswa));?>" title="Delete" class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-trash-o"></i>
                                     </a>
                                 </td>
