@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12" data-plugin-portlet id="portlet-1">
-        <form enctype="multipart/form-data" accept-charset="utf-8" id="form" action="<?php // echo base_url('pendaftaran_pkm/savePendaftaran');?>" class="form-horizontal form-bordered" method="post">
+        <form enctype="multipart/form-data" accept-charset="utf-8" id="form" action="<?php echo base_url('pendaftaran_pkm/savePendaftaran');?>" class="form-horizontal form-bordered" method="post">
             <section class="panel panel-primary" data-portlet-item>
                 <header class="panel-heading portlet-handler">
                     <div class="panel-actions">
