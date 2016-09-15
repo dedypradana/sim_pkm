@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/vendor/font-awesome/css/font-awesome.css" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/vendor/magnific-popup/magnific-popup.css" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/vendor/bootstrap-datepicker/css/datepicker3.css" />
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/vendor/bootstrap-fileupload/bootstrap-fileupload.min.css" />
         <!-- Specific Page Vendor CSS -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
@@ -83,6 +84,7 @@
         <script src="<?php echo base_url(); ?>assets/backend/vendor/select2/select2.js"></script>
         <script src="<?php echo base_url(); ?>assets/backend/vendor/pnotify/pnotify.custom.js"></script>
         <script src="<?php echo base_url(); ?>assets/backend/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+        <script src="<?php echo base_url(); ?>assets/backend/vendor/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/backend/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/backend/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
 
