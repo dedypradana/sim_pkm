@@ -294,7 +294,7 @@
                             <a href="<?php echo base_url('pendaftaran_pkm/edit/'.encode($this->admin['id']));?>" class="btn btn-primary">Edit PKM</a>
                             <?php }else{ ?>
                             <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Submit PKM</button>
-                            <a href="<?php echo base_url('pendaftaran_pkm');?>" class="btn btn-warning"><i class="fa fa-backward"></i> Cancel</a>
+                            <a href="<?php echo base_url('pendaftaran_pkm');?>" class="btn btn-warning">Cancel</a>
                             <?php } ?>
                         </div>
                     </div>
