@@ -15,7 +15,19 @@ class Admin_master extends MY_Controller {
         $data['subtitle'] = 'Semua Master Data';
         $this->templates->admin('index',$data);
     }
-    
+    public function master_informasi() {
+        $crud = new grocery_CRUD();
+        
+        $crud->set_table('master_informasi');
+//        $crud->columns('alamat', 'phone', 'email');
+//        $crud->required_fields('about','alamat','email','phone');
+        $data = (array)$crud->render();
+        
+        $data['title'] = 'Manage Footer';
+        $data['subtitle'] = 'Semua yang Ada Dalam Footer';
+        $data['theme'] = 'yellow';
+        $this->templates->admin('v_informasi', @$data);
+    }
     public function master_administrator($action='',$id='') {
         $data['title'] = 'Master Administrator';
         $data['administrator'] = $this->mgb->find('master_admin','','','','id_admin')->result();

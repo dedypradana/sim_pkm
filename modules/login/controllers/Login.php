@@ -19,7 +19,7 @@ class Login extends CI_Controller {
 
     public function addContact(){
         if ($this->input->post()) {
-        	$captcha_answer = $this->input->post('g-recaptcha-response');
+            $captcha_answer = $this->input->post('g-recaptcha-response');
             $response = $this->recaptcha->verifyResponse($captcha_answer);
             $this->form_validation->set_rules('nama', 'Nama', 'required');
             $this->form_validation->set_rules('email', 'Email', 'required');
