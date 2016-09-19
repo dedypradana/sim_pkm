@@ -154,11 +154,7 @@
                                 <span class="input-group-addon">
                                     <span class="icon"><i class="fa fa-chevron-circle-right"></i></span>
                                 </span>
-<<<<<<< HEAD
-                                <input type="text" name="nip_dn" id="nip_dn" class="form-control" placeholder="NIP">
-=======
                                 <input type="text" name="nip_dn" id="nip_dn" class="form-control" placeholder="NIDN" value="<?php echo @$c_pkm->nip_dn;?>" <?php echo $c_daftar ? 'readonly':'';?>>
->>>>>>> fbe9581e6ad79345e95aeaba7ffbce469e7814d3
                             </div>
                         </div>
                     </div>
