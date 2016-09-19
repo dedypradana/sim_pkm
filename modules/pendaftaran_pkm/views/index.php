@@ -90,16 +90,16 @@
                         </div>
                     </div>
                     <div class="alert alert-info">
-                        Masukkan NIDN, Nama, Alamat <strong>Data Dosen</strong>.
+                        Masukkan NIP, Nama, Alamat <strong>Data Dosen</strong>.
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">NIDN</label>
+                        <label class="col-md-3 control-label">NIP</label>
                         <div class="col-md-6">
                             <div class="input-group input-group-icon">
                                 <span class="input-group-addon">
                                     <span class="icon"><i class="fa fa-chevron-circle-right"></i></span>
                                 </span>
-                                <input type="text" name="nip_dn" id="nip_dn" class="form-control" placeholder="NIDN">
+                                <input type="text" name="nip_dn" id="nip_dn" class="form-control" placeholder="NIP">
                             </div>
                         </div>
                     </div>
