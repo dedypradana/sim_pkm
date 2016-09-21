@@ -50,9 +50,15 @@ class Pendaftaran_pkm extends MY_Controller {
         $this->templates->admin('index', $data);
     }
     
+    public function editStatus($id='') {
+        $post = $this->input->post();
+        $edit = $this->mp->changeStatus($post);
+        return true;
+    }
+    
     public function deleteAnggota(){
-        $id_anggota = $this->input->post('id_anggota');
-        $delete = $this->mp->delAnggota($id_anggota);
+        $id_map = $this->input->post('id_map');
+        $delete = $this->mp->delAnggota($id_map);
         return TRUE;
     }
     
@@ -110,7 +116,6 @@ class Pendaftaran_pkm extends MY_Controller {
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('nim_anggota[]', 'NIM Anggota', 'required|trim');
         $this->form_validation->set_rules('nama_anggota[]', 'Nama Anggota', 'required|trim');
-        $this->form_validation->set_rules('jurusan_anggota[]', 'Jurusan Anggota', 'required|trim');
         $this->form_validation->set_rules('nip_dn', 'NIDN', 'trim');
         $this->form_validation->set_rules('nama_dn', 'Nama Dosen', 'required|trim');
         $this->form_validation->set_rules('email_dn', 'Email Dosen', 'required|trim|valid_email');
@@ -160,7 +165,6 @@ class Pendaftaran_pkm extends MY_Controller {
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('nim_anggota[]', 'NIM Anggota', 'required|trim');
         $this->form_validation->set_rules('nama_anggota[]', 'Nama Anggota', 'required|trim');
-        $this->form_validation->set_rules('jurusan_anggota[]', 'Jurusan Anggota', 'required|trim');
         $this->form_validation->set_rules('nip_dn', 'NIDN', 'trim');
         $this->form_validation->set_rules('nama_dn', 'Nama Dosen', 'required|trim');
         $this->form_validation->set_rules('email_dn', 'Email Dosen', 'required|trim|valid_email');

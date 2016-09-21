@@ -33,7 +33,7 @@
                                 <span class="input-group-addon">
                                     <span class="icon"><i class="fa fa-chevron-circle-right"></i></span>
                                 </span>
-                                <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM" value="<?php echo @$this->admin['nim'];?>" readonly>
+                                <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM" value="<?php echo @$c_pkm->nim;?>" readonly>
                             </div>
                         </div>
                     </div>
@@ -286,11 +286,10 @@
                 <footer class="panel-footer">
                     <div class="row">
                         <div class="col-sm-9 col-sm-offset-3">
-                            <?php if($c_daftar){ ?>
+                            <?php if($non_ketua){ ?>
                             <a href="<?php echo base_url('pendaftaran_pkm/edit/'.encode($this->admin['id']));?>" class="btn btn-primary">Edit PKM</a>
                             <?php }else{ ?>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Submit PKM</button>
-                            <a href="<?php echo base_url('pendaftaran_pkm');?>" class="btn btn-warning">Cancel</a>
+                            <a href="<?php echo base_url('list_pkm');?>" class="btn btn-warning">Cancel</a>
                             <?php } ?>
                         </div>
                     </div>

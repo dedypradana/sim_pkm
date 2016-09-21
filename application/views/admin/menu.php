@@ -27,6 +27,12 @@
                             <span>Pendaftaran PKM</span>
                         </a>
                     </li>
+                    <li class="<?php if($this->s1=='list_pkm'){echo 'nav-active';}?>">
+                        <a href="<?php echo base_url('list_pkm');?>">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            <span>List PKM</span>
+                        </a>
+                    </li>
                     <?php } ?>
                     <?php if($this->admin['tipe']=='administrator'){ ?>
                     <li class="nav-parent <?php if($this->s1=='admin_master'){echo 'nav-expanded nav-active';}?>">

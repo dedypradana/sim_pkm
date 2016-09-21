@@ -13,19 +13,25 @@ class M_pendaftaran extends CI_Model {
         if($return){return $return;}else{return false;}
     }
     public function check_anggota($id) {
-        $this->db->select('*');
-        $this->db->from('anggota_pkm');
-        $this->db->where('id_daftar',$id);
+        $this->db->select('master_mahasiswa.*, map_anggota.status, map_anggota.id_daftar, map_anggota.id_map');
+        $this->db->from('map_anggota');
+        $this->db->join('master_mahasiswa', 'master_mahasiswa.nim_mahasiswa = map_anggota.nim_anggota');
+        $this->db->where('map_anggota.id_daftar',$id);
         $res = $this->db->get();
         $return = $res->result();
         if($return){return $return;}else{return false;}
     }
+    public function changeStatus($param) {
+        $this->db->set('status', 1);
+        $this->db->where('id_map', $param['id_map']);
+        $this->db->update('map_anggota');
+    }
     public function delAnggota($id){
-        $this->db->delete('anggota_pkm', array('id_anggota' => $id));
+        $this->db->delete('map_anggota', array('id_map' => $id));
         return true;
     }
     public function delGroupAnggota($id_daftar){
-        $this->db->delete('anggota_pkm', array('id_daftar' => $id_daftar));
+        $this->db->delete('map_anggota', array('id_daftar' => $id_daftar));
         return true;
     }
     public function delBerkas($param){
@@ -81,12 +87,14 @@ class M_pendaftaran extends CI_Model {
             $idx = count($param['nim_anggota']);
             for($i=0;$i<$idx;$i++){
                 $dt = array(
-                    'id_daftar' =>$param['id_daftar'],
-                    'nim'       =>$param['nim_anggota'][$i],
-                    'nama'      =>$param['nama_anggota'][$i],
-                    'jurusan'   =>$param['jurusan_anggota'][$i],
+                    'id_daftar'     =>$param['id_daftar'],
+                    'nim_anggota'   =>$param['nim_anggota'][$i],
+                    'nama_anggota'  =>$param['nama_anggota'][$i],
+                    'nim_ketua'     =>$param['nim'],
+                    'status'        => 1,
+                    'create'        => date('Y-m-d'),
                 );
-                $this->db->insert('anggota_pkm', $dt);
+                $this->db->insert('map_anggota', $dt);
             }
         }else{
             return FALSE;
@@ -121,12 +129,14 @@ class M_pendaftaran extends CI_Model {
             $idx = count($param['nim_anggota']);
             for($i=0;$i<$idx;$i++){
                 $dt = array(
-                    'id_daftar' =>$insert_id,
-                    'nim'       =>$param['nim_anggota'][$i],
-                    'nama'      =>$param['nama_anggota'][$i],
-                    'jurusan'   =>$param['jurusan_anggota'][$i],
+                    'id_daftar'     =>$insert_id,
+                    'nim_anggota'   =>$param['nim_anggota'][$i],
+                    'nama_anggota'  =>$param['nama_anggota'][$i],
+                    'nim_ketua'     =>$param['nim'],
+                    'status'        => 1,
+                    'create'        => date('Y-m-d'),
                 );
-                $this->db->insert('anggota_pkm', $dt);
+                $this->db->insert('map_anggota', $dt);
             }
         }else{
             return FALSE;

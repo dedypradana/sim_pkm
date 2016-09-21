@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12" data-plugin-portlet id="portlet-1">
-        <form enctype="multipart/form-data" accept-charset="utf-8" id="form" action="<?php echo base_url('pendaftaran_pkm/savePendaftaran'); ?>" class="form-horizontal form-bordered" method="post">
+        <form accept-charset="utf-8" id="form" action="<?php echo base_url('pendaftaran_pkm/changeStatus'); ?>" class="form-horizontal form-bordered" method="post">
             <section class="panel panel-quartenary" data-portlet-item>
                 <header class="panel-heading portlet-handler">
                     <div class="panel-actions">
@@ -40,7 +40,15 @@
                                 <?php if($anggota){ $no = 1;foreach($anggota as $rec){ ?>
                                 <tr>
                                     <td>Anggota <?php echo $no;?></td>
-                                    <td>(<?php echo @$rec->nim;?>) <?php echo @$rec->nama;?>, <?php echo @$rec->jurusan;?></td>
+                                    <td>
+                                        (<?php echo @$rec->nim_mahasiswa;?>) <?php echo @$rec->nama_mahasiswa;?>, <?php echo @$rec->jurusan;?>
+                                        <?php if(@$rec->status==1){ ?>
+                                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-xs btn-success" style="cursor: default">Diterima</button>
+                                        <?php } else { ?>
+                                        <button type="button" onclick="editStatus('<?php echo @$rec->id_map;?>');" class="mb-xs mt-xs mr-xs btn btn-xs btn-info">Terima Anggota</button>
+                                        <button type="button" onclick="deleteAnggota('<?php echo @$rec->id_map;?>');" class="mb-xs mt-xs mr-xs btn btn-xs btn-danger">Hapus</button>
+                                        <?php } ?>
+                                    </td>
                                 </tr>
                                 <?php $no++; }} ?>
                                 <tr>
@@ -63,3 +71,25 @@
         </form>    
     </div>
 </div>
+<script>
+function editStatus(id) {
+    $.ajax({
+        type: 'POST',
+        data: 'id_map='+id,
+        url: "<?php echo base_url('pendaftaran_pkm/editStatus'); ?>",
+        success: function(data) {
+            location.reload();
+        }
+    });
+}
+function deleteAnggota(id) {
+    $.ajax({
+        type: 'POST',
+        data: 'id_map='+id,
+        url: "<?php echo base_url('pendaftaran_pkm/deleteAnggota'); ?>",
+        success: function(data) {
+            location.reload();
+        }
+    });
+}
+</script>

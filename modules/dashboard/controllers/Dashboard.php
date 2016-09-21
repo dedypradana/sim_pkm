@@ -26,6 +26,7 @@ class Dashboard extends CI_Controller {
                 if($check['tipe']=='mahasiswa'){
                     $sesi = array(
                         'id'  => $check['id_mahasiswa'],
+                        'nim' => $check['nim_mahasiswa'],
                         'nama'=> $check['nama_mahasiswa'],
                         'username' => $check['username'],
                         'tipe' => 'mahasiswa'
