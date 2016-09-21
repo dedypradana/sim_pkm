@@ -29,8 +29,7 @@ class M_list extends CI_Model {
     public function checkAnggota($nim,$id_daftar){
         $this->db->select('*');
         $this->db->from('map_anggota');
-        $this->db->where('id_daftar',$id_daftar);
-        $this->db->where('nim_anggota',$nim);
+        $this->db->where("(id_daftar = '$id_daftar' AND nim_anggota = '$nim') OR nim_ketua = '$nim'");
         $res = $this->db->get();
         $return = $res->result();
         if($return){return true;}else{return false;}
