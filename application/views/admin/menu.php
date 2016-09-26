@@ -30,7 +30,7 @@
                     <li class="<?php if($this->s1=='list_pkm'){echo 'nav-active';}?>">
                         <a href="<?php echo base_url('list_pkm');?>">
                             <i class="fa fa-list" aria-hidden="true"></i>
-                            <span>List PKM</span>
+                            <span>Pilih PKM Sebagai Anggota</span>
                         </a>
                     </li>
                     <?php } ?>

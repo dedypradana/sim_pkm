@@ -45,12 +45,12 @@
                     <label class="col-sm-3 control-label">Gender <span class="required">*</span></label>
                     <div class="col-sm-9">
                         <div class="radio-custom radio-primary">
-                            <input id="L" name="jenis_kelamin_dosen" <?php if(@$dosen->jenis_kelamin_dosen=='L'){echo'checked';}?> type="radio" value="L" required />
-                            <label for="L">Laki - Laki</label>
+                            <input id="Laki-laki" name="jenis_kelamin_dosen" <?php if(@$dosen->jenis_kelamin_dosen=='Laki-laki'){echo'checked';}?> type="radio" value="Laki-laki" required />
+                            <label for="Laki-laki">Laki - Laki</label>
                         </div>
                         <div class="radio-custom radio-primary">
-                            <input id="P" name="jenis_kelamin_dosen" <?php if(@$dosen->jenis_kelamin_dosen=='P'){echo'checked';}?> type="radio" value="P" />
-                            <label for="P">Perempuan</label>
+                            <input id="Perempuan" name="jenis_kelamin_dosen" <?php if(@$dosen->jenis_kelamin_dosen=='Perempuan'){echo'checked';}?> type="radio" value="Perempuan" />
+                            <label for="Perempuan">Perempuan</label>
                         </div>
                     </div>
                 </div>
