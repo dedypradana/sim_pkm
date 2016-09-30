@@ -1,106 +1,67 @@
-<!-- start: page -->
-<div class="row">
-    <div class="col-md-6 col-lg-12 col-xl-6">
-        <?php echo @$this->session->flashdata('msg'); ?>
-        <div class="row">
-            <div class="col-md-12 col-lg-6 col-xl-6">
-                <section class="panel panel-featured-left panel-featured-primary">
-                    <div class="panel-body">
-                        <div class="widget-summary">
-                            <div class="widget-summary-col widget-summary-col-icon">
-                                <div class="summary-icon bg-primary">
-                                    <i class="fa fa-life-ring"></i>
-                                </div>
-                            </div>
-                            <div class="widget-summary-col">
-                                <div class="summary">
-                                    <h4 class="title">Support Questions</h4>
-                                    <div class="info">
-                                        <strong class="amount">1281</strong>
-                                        <span class="text-primary">(14 unread)</span>
-                                    </div>
-                                </div>
-                                <div class="summary-footer">
-                                    <a class="text-muted text-uppercase">(view all)</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+<div class="col-md-12 col-lg-12 col-xl-6">
+    <?php if ($ketua) { ?>
+        <section class="panel panel-horizontal">
+            <header class="panel-heading bg-primary">
+                <div class="panel-heading-icon">
+                    <i class="fa fa-paperclip"></i>
+                </div>
+            </header>
+            <div class="panel-body p-lg">
+                <h3 class="text-weight-semibold mt-sm">PKM Sebagai Ketua, <?php echo @$ketua->bidang_ilmu; ?> (<?php echo @$ketua->bidang_pkm; ?>)</h3>
+                <p style="font-size: 15px;"><a href="<?php echo base_url('admin_dashboard/detail_pkm/'.encode(@$ketua->id_daftar));?>" style="cursor: pointer;">Judul : <?php echo @$ketua->judul; ?></a></p>
             </div>
-            <div class="col-md-12 col-lg-6 col-xl-6">
-                <section class="panel panel-featured-left panel-featured-secondary">
-                    <div class="panel-body">
-                        <div class="widget-summary">
-                            <div class="widget-summary-col widget-summary-col-icon">
-                                <div class="summary-icon bg-secondary">
-                                    <i class="fa fa-usd"></i>
-                                </div>
-                            </div>
-                            <div class="widget-summary-col">
-                                <div class="summary">
-                                    <h4 class="title">Total Profit</h4>
-                                    <div class="info">
-                                        <strong class="amount">$ 14,890.30</strong>
-                                    </div>
-                                </div>
-                                <div class="summary-footer">
-                                    <a class="text-muted text-uppercase">(withdraw)</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+        </section>
+    <?php } ?>
+    <?php if ($info) {foreach ($info as $rec) { ?>
+        <section class="panel panel-horizontal">
+            <header class="panel-heading bg-primary">
+                <div class="panel-heading-icon">
+                    <i class="fa fa-paperclip"></i>
+                </div>
+            </header>
+            <div class="panel-body p-lg">
+                <h3 class="text-weight-semibold mt-sm">Anggota PKM, <?php echo @$rec->bidang_ilmu; ?> (<?php echo @$rec->bidang_pkm; ?>)</h3>
+                <p style="font-size: 15px;"><a href="<?php echo base_url('admin_dashboard/detail_pkm/'.encode(@$rec->id_daftar));?>" style="cursor: pointer;">Judul : <?php echo @$rec->judul; ?></a></p>
             </div>
-            <div class="col-md-12 col-lg-6 col-xl-6">
-                <section class="panel panel-featured-left panel-featured-tertiary">
-                    <div class="panel-body">
-                        <div class="widget-summary">
-                            <div class="widget-summary-col widget-summary-col-icon">
-                                <div class="summary-icon bg-tertiary">
-                                    <i class="fa fa-shopping-cart"></i>
-                                </div>
-                            </div>
-                            <div class="widget-summary-col">
-                                <div class="summary">
-                                    <h4 class="title">Today's Orders</h4>
-                                    <div class="info">
-                                        <strong class="amount">38</strong>
-                                    </div>
-                                </div>
-                                <div class="summary-footer">
-                                    <a class="text-muted text-uppercase">(statement)</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+        </section>
+    <?php }} ?>
+    <?php if ($dosen) {foreach ($dosen as $rec) { ?>
+        <section class="panel panel-horizontal">
+            <header class="panel-heading bg-primary">
+                <div class="panel-heading-icon">
+                    <i class="fa fa-paperclip"></i>
+                </div>
+            </header>
+            <div class="panel-body p-lg">
+                <h3 class="text-weight-semibold mt-sm">Pembimbing PKM, <?php echo @$rec->bidang_ilmu; ?> (<?php echo @$rec->bidang_pkm; ?>)</h3>
+                <p style="font-size: 15px;"><a href="<?php echo base_url('admin_dashboard/detail_pkm/'.encode(@$rec->id_daftar));?>" style="cursor: pointer;">Judul : <?php echo @$rec->judul; ?></a></p>
             </div>
-            <div class="col-md-12 col-lg-6 col-xl-6">
-                <section class="panel panel-featured-left panel-featured-quartenary">
-                    <div class="panel-body">
-                        <div class="widget-summary">
-                            <div class="widget-summary-col widget-summary-col-icon">
-                                <div class="summary-icon bg-quartenary">
-                                    <i class="fa fa-user"></i>
-                                </div>
-                            </div>
-                            <div class="widget-summary-col">
-                                <div class="summary">
-                                    <h4 class="title">Today's Visitors</h4>
-                                    <div class="info">
-                                        <strong class="amount">3765</strong>
-                                    </div>
-                                </div>
-                                <div class="summary-footer">
-                                    <a class="text-muted text-uppercase">(report)</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+        </section>
+    <?php }} ?>
+    <?php if ($admin) {foreach ($admin as $rec) { ?>
+        <section class="panel panel-horizontal">
+            <header class="panel-heading bg-primary">
+                <div class="panel-heading-icon">
+                    <i class="fa fa-paperclip"></i>
+                </div>
+            </header>
+            <div class="panel-body p-lg">
+                <h3 class="text-weight-semibold mt-sm">Validasi Admin PKM, <?php echo @$rec->bidang_ilmu; ?> (<?php echo @$rec->bidang_pkm; ?>)</h3>
+                <p style="font-size: 15px;"><a href="<?php echo base_url('admin_dashboard/detail_pkm/'.encode(@$rec->id_daftar));?>" style="cursor: pointer;">Judul : <?php echo @$rec->judul; ?></a></p>
             </div>
-        </div>
-    </div>
+        </section>
+    <?php }} ?>
+    <?php if(!$info && !$ketua && !$dosen && !$admin){ ?>
+        <section class="panel panel-horizontal">
+            <header class="panel-heading bg-white">
+                <div class="panel-heading-icon bg-primary mt-sm">
+                    <i class="fa fa-info"></i>
+                </div>
+            </header>
+            <div class="panel-body p-lg">
+                <h3 class="text-weight-semibold mt-sm">Belum ada informasi (<?php echo $this->admin['nama']?>)</h3>
+                <p style="font-size: 15px;">Belum ada informasi PKM untuk anda..</p>
+            </div>
+        </section>
+    <?php } ?>
 </div>
-<!-- end: page -->

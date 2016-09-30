@@ -26,6 +26,8 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/vendor/select2/select2.css" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/vendor/pnotify/pnotify.custom.css" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/vendor/summernote/summernote.css" />
+        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/vendor/summernote/summernote-bs3.css" />
         <!-- Theme CSS -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/backend/stylesheets/theme.css" />
         <!-- Skin CSS -->
@@ -87,6 +89,7 @@
         <script src="<?php echo base_url(); ?>assets/backend/vendor/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/backend/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/backend/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+        <script src="<?php echo base_url(); ?>assets/backend/vendor/summernote/summernote.js"></script>
 
         <script src="<?php echo base_url(); ?>assets/backend/javascripts/tables/examples.datatables.default.js"></script>
         <script src="<?php echo base_url(); ?>assets/backend/javascripts/tables/examples.datatables.row.with.details.js"></script>

@@ -16,7 +16,7 @@
                 <table class="table table-bordered table-striped table-hover mb-none" id="datatable-default">
                     <thead>
                         <tr>
-                            <th>NIP</th>
+                            <th>NIDN</th>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Username</th>
@@ -39,7 +39,7 @@
                                     <a href="<?php echo base_url('admin_master/master_dosen/edit/'.encode(@$rec->id_dosen));?>" title="Edit"class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <a href="<?php echo base_url('admin_master/master_dosen/delete/'.encode(@$rec->id_dosen));?>" title="Delete" class="btn btn-default btn-sm btn-default">
+                                    <a href="<?php echo base_url('admin_master/master_dosen/delete/'.encode(@$rec->id_dosen));?>" onclick="javascript:return confirm('Are you absolutely sure you want to delete?')" title="Delete" class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-trash-o"></i>
                                     </a>
                                 </td>

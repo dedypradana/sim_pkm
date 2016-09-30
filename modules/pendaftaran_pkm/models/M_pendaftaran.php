@@ -4,21 +4,47 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_pendaftaran extends CI_Model {
     
-    public function check_pkm($id) {
-        $this->db->select('*');
+    public function check_pkm($nim) {
+        $this->db->select('*, mahasiswa.nama_mahasiswa nama, mahasiswa.handphone_mahasiswa telp, mahasiswa.email_mahasiswa email, mahasiswa.alamat_mahasiswa alamat, dosen.nama_dosen nama_dn, dosen.email_dosen email_dn, dosen.alamat_dosen alamat_dn');
         $this->db->from('pendaftaran_pkm');
-        $this->db->where('id_mahasiswa',$id);
+        $this->db->join('mahasiswa', 'mahasiswa.nim_mahasiswa = pendaftaran_pkm.nim', 'left');
+        $this->db->join('dosen', 'dosen.nip_dosen = pendaftaran_pkm.nip_dn', 'left');
+        $this->db->where('nim',$nim);
         $res = $this->db->get();
         $return = $res->row();
         if($return){return $return;}else{return false;}
     }
+    public function get_dosen($nidn='') {
+        $this->db->select('*');
+        $this->db->from('dosen');
+        if($nidn){$this->db->where('nip_dosen',$nidn);}
+        $res = $this->db->get();
+        $return = $res->result();
+        if($return){return $return;}else{return false;}
+    }
+    public function get_mhs($nim='') {
+        $this->db->select('nim_mahasiswa, nama_mahasiswa');
+        $this->db->from('mahasiswa');
+        $this->db->where_not_in('nim_mahasiswa', $nim);
+        $res = $this->db->get();
+        $return = $res->result();
+        if($return){return $return;}else{return false;}
+    }
     public function check_anggota($id) {
-        $this->db->select('master_mahasiswa.*, map_anggota.status, map_anggota.id_daftar, map_anggota.id_map');
+        $this->db->select('mahasiswa.*, map_anggota.status, map_anggota.id_daftar, map_anggota.id_map');
         $this->db->from('map_anggota');
-        $this->db->join('master_mahasiswa', 'master_mahasiswa.nim_mahasiswa = map_anggota.nim_anggota');
+        $this->db->join('mahasiswa', 'mahasiswa.nim_mahasiswa = map_anggota.nim_anggota');
         $this->db->where('map_anggota.id_daftar',$id);
         $res = $this->db->get();
         $return = $res->result();
+        if($return){return $return;}else{return false;}
+    }
+    public function check_mhs($id){
+        $this->db->select('nim_mahasiswa, jurusan, nama_mahasiswa nama, handphone_mahasiswa telp,email_mahasiswa email, alamat_mahasiswa alamat');
+        $this->db->from('mahasiswa');
+        $this->db->where('nim_mahasiswa',$id);
+        $res = $this->db->get();
+        $return = $res->row();
         if($return){return $return;}else{return false;}
     }
     public function changeStatus($param) {
@@ -60,24 +86,29 @@ class M_pendaftaran extends CI_Model {
         $this->db->update('pendaftaran_pkm');
         return TRUE;
     }
+    public function get_status($id_daftar='') {
+        $this->db->select('*');
+        $this->db->from('pendaftaran_pkm');
+        $this->db->where('id_daftar', $id_daftar);
+        $res = $this->db->get();
+        $return = $res->row();
+        if($return){return $return;}else{return false;}
+    }
     public function doUpdate($param) {
+        $status = $this->get_status($param['id_daftar']);
+        if($status->acc_dosen==2){$acc_d = 2;}else{$acc_d = 0;}
+        if($status->acc_admin==2){$acc_a = 2;}else{$acc_a = 0;}
         $data = array(
             'nim'       => $param['nim'],
-            'nama'      => $param['nama'],
-            'jurusan'   => $param['jurusan'],
-            'telp'      => $param['telp'],
-            'email'     => $param['email'],
-            'alamat'    => $param['alamat'],
             'nip_dn'    => $param['nip_dn'],
-            'nama_dn'   => $param['nama_dn'],
-            'email_dn'  => $param['email_dn'],
-            'alamat_dn' => $param['alamat_dn'],
             'judul'     => $param['judul'],
-            'bidang'    => $param['bidang'],
-            'd_hibah'   => $param['d_hibah'],
-            'd_mas'     => $param['d_mas'],
+            'bidang_pkm'=> $param['bidang_pkm'],
+            'bidang_ilmu'=> $param['bidang_ilmu'],
+            'luaran'    => $param['luaran'],
             'u_berkas'  => $param['u_berkas'],
             'u_lampiran'=> $param['u_lampiran'],
+            'acc_dosen'=> $acc_d,
+            'acc_admin'=> $acc_a,
             'created'   => date('Y-m-d H:i:s'),
         );
         $this->db->where('id_daftar', $param['id_daftar']);
@@ -89,7 +120,6 @@ class M_pendaftaran extends CI_Model {
                 $dt = array(
                     'id_daftar'     =>$param['id_daftar'],
                     'nim_anggota'   =>$param['nim_anggota'][$i],
-                    'nama_anggota'  =>$param['nama_anggota'][$i],
                     'nim_ketua'     =>$param['nim'],
                     'status'        => 1,
                     'create'        => date('Y-m-d'),
@@ -106,21 +136,16 @@ class M_pendaftaran extends CI_Model {
         $data = array(
             'id_mahasiswa'=> $this->session->userdata('admin_login')['id'],
             'nim'       => $param['nim'],
-            'nama'      => $param['nama'],
-            'jurusan'   => $param['jurusan'],
-            'telp'      => $param['telp'],
-            'email'     => $param['email'],
-            'alamat'    => $param['alamat'],
             'nip_dn'    => $param['nip_dn'],
-            'nama_dn'   => $param['nama_dn'],
-            'email_dn'  => $param['email_dn'],
-            'alamat_dn' => $param['alamat_dn'],
             'judul'     => $param['judul'],
-            'bidang'    => $param['bidang'],
-            'd_hibah'   => $param['d_hibah'],
-            'd_mas'     => $param['d_mas'],
+            'abstrak'   => $param['abstrak'],
+            'bidang_pkm'=> $param['bidang_pkm'],
+            'bidang_ilmu'=> $param['bidang_ilmu'],
+            'luaran'    => $param['luaran'],
             'u_berkas'  => $param['u_berkas'],
             'u_lampiran'=> $param['u_lampiran'],
+            'acc_dosen'=> 0,
+            'acc_admin'=> 0,
             'created'   => date('Y-m-d H:i:s'),
         );
         $this->db->insert('pendaftaran_pkm', $data);
@@ -131,7 +156,6 @@ class M_pendaftaran extends CI_Model {
                 $dt = array(
                     'id_daftar'     =>$insert_id,
                     'nim_anggota'   =>$param['nim_anggota'][$i],
-                    'nama_anggota'  =>$param['nama_anggota'][$i],
                     'nim_ketua'     =>$param['nim'],
                     'status'        => 1,
                     'create'        => date('Y-m-d'),

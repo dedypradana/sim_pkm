@@ -47,12 +47,6 @@
                                 <td><?php echo @$mhs->jenis_kelamin_mahasiswa;?></td>
                             </tr>
                             <tr>
-                                <td>5</td>
-                                <td>Program Studi</td>
-                                <td>:</td>
-                                <td><?php echo @$mhs->program_studi_mahasiswa;?></td>
-                            </tr>
-                            <tr>
                                 <td>6</td>
                                 <td>Jurusan</td>
                                 <td>:</td>

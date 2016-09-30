@@ -30,7 +30,15 @@
                     <li class="<?php if($this->s1=='list_pkm'){echo 'nav-active';}?>">
                         <a href="<?php echo base_url('list_pkm');?>">
                             <i class="fa fa-list" aria-hidden="true"></i>
-                            <span>List PKM</span>
+                            <span>Search Berkas PKM</span>
+                        </a>
+                    </li>
+                    <?php } ?>
+                    <?php if($this->admin['tipe']=='dosen'){ ?>
+                    <li class="<?php if($this->s1=='validasi_pkm'){echo 'nav-active';}?>">
+                        <a href="<?php echo base_url('validasi_pkm');?>">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                            <span>Validasi Berkas PKM</span>
                         </a>
                     </li>
                     <?php } ?>
@@ -57,6 +65,12 @@
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="<?php if($this->s1=='validasi_pkm'){echo 'nav-active';}?>">
+                        <a href="<?php echo base_url('validasi_pkm');?>">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                            <span>Validasi Berkas PKM</span>
+                        </a>
                     </li>
                     <?php } ?>
                 </ul>

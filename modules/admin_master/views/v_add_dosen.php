@@ -18,9 +18,9 @@
             <div class="panel-body">
                 <?php echo @$this->session->flashdata('flash_data'); ?>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">NIP </label>
+                    <label class="col-sm-3 control-label">NIDN </label>
                     <div class="col-sm-9">
-                        <input type="text" name="nip_dosen" class="form-control" value="<?php echo @$dosen->nip_dosen;?>" placeholder="NIP"/>
+                        <input type="text" name="nip_dosen" class="form-control" value="<?php echo @$dosen->nip_dosen;?>" placeholder="NIDN"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -45,11 +45,11 @@
                     <label class="col-sm-3 control-label">Gender <span class="required">*</span></label>
                     <div class="col-sm-9">
                         <div class="radio-custom radio-primary">
-                            <input id="L" name="jenis_kelamin_dosen" <?php if(@$dosen->jenis_kelamin_dosen=='L'){echo'checked';}?> type="radio" value="L" required />
+                            <input id="L" name="jenis_kelamin_dosen" <?php if(@$dosen->jenis_kelamin_dosen=='Laki-laki'){echo'checked';}?> type="radio" value="Laki-laki" required />
                             <label for="L">Laki - Laki</label>
                         </div>
                         <div class="radio-custom radio-primary">
-                            <input id="P" name="jenis_kelamin_dosen" <?php if(@$dosen->jenis_kelamin_dosen=='P'){echo'checked';}?> type="radio" value="P" />
+                            <input id="P" name="jenis_kelamin_dosen" <?php if(@$dosen->jenis_kelamin_dosen=='Perempuan'){echo'checked';}?> type="radio" value="Perempuan" />
                             <label for="P">Perempuan</label>
                         </div>
                     </div>

@@ -51,11 +51,11 @@
                     <label class="col-sm-3 control-label">Gender <span class="required">*</span></label>
                     <div class="col-sm-9">
                         <div class="radio-custom radio-primary">
-                            <input id="L" name="jenis_kelamin_mahasiswa" <?php if(@$mhs->jenis_kelamin_mahasiswa=='L'){echo'checked';}?> type="radio" value="L" required />
+                            <input id="L" name="jenis_kelamin_mahasiswa" <?php if(@$mhs->jenis_kelamin_mahasiswa=='Laki-laki'){echo'checked';}?> type="radio" value="Laki-laki" required />
                             <label for="L">Laki - Laki</label>
                         </div>
                         <div class="radio-custom radio-primary">
-                            <input id="P" name="jenis_kelamin_mahasiswa" <?php if(@$mhs->jenis_kelamin_mahasiswa=='P'){echo'checked';}?> type="radio" value="P" />
+                            <input id="P" name="jenis_kelamin_mahasiswa" <?php if(@$mhs->jenis_kelamin_mahasiswa=='Perempuan'){echo'checked';}?> type="radio" value="Perempuan" />
                             <label for="P">Perempuan</label>
                         </div>
                     </div>
@@ -83,12 +83,6 @@
                             </span>
                             <input type="text" name="tanggal_lahir_mahasiswa" value="<?php echo @$mhs->tanggal_lahir_mahasiswa;?>" data-plugin-datepicker data-date-format="yyyy-mm-dd" class="form-control">
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Program Studi </label>
-                    <div class="col-sm-9">
-                        <input type="text" name="program_studi_mahasiswa" class="form-control" value="<?php echo @$mhs->program_studi_mahasiswa;?>" placeholder="Program Studi"/>
                     </div>
                 </div>
                 <div class="form-group">
