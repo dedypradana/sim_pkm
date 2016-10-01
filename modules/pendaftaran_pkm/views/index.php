@@ -97,7 +97,7 @@
                             <div class="col-lg-12">
                                 <ol>
                                     <?php foreach($c_anggota as $rec){ ?>
-                                    <li>(<?php echo @$rec->nim_mahasiswa;?>) <?php echo @$rec->nama_mahasiswa;?>, <?php echo @$rec->jurusan;?>, Status : <?php echo @$rec->status==0 ? '<font style="color:#f00">Belum Diterima</font>':'<font style="color:#00f">Diterima</font>';?></li>
+                                    <li>(<?php echo @$rec->nim_mahasiswa;?>) <?php echo @$rec->nama_mahasiswa;?>, <?php echo @$rec->jurusan;?></li>
                                     <?php } ?>
                                 </ol>
                             </div>
@@ -113,12 +113,15 @@
                       <label class="col-md-3 control-label">Anggota</label>
                            <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-sm-5">
-                                    <input type="text" name="nim_anggota[]" value="<?php echo @$rec->nim_mahasiswa;?>" class="form-control" placeholder="NIM">
-                                </div>
-                                <div class="visible-xs mb-md"></div>
-                                <div class="col-sm-6">
-                                    <input type="text" name="nama_anggota[]" value="<?php echo @$rec->nama_mahasiswa;?>" class="form-control" placeholder="Nama">
+                                <div class="col-sm-9">
+                                    <select data-plugin-selectTwo name="nim_anggota[]" class="form-control populate"  placeholder="Nim / Nama Anggota">
+                                        <option value=""></option>
+                                        <optgroup label="Pilih Nim / Nama Anggota">
+                                            <?php if($mhs){foreach($mhs as $m){ ?>
+                                            <option value="<?php echo @$m->nim_mahasiswa; ?>" <?php if(@$m->nim_mahasiswa==@$rec->nim_mahasiswa){echo 'selected';}?>><?php echo @$m->nim_mahasiswa; ?> | <?php echo @$m->nama_mahasiswa; ?></option>
+                                            <?php }} ?>
+                                        </optgroup>
+                                    </select>
                                 </div>
                                 <div class="col-sm-1">
                                     <button type="button" onclick="rm(<?php echo $init;?>,<?php echo @$rec->id_map;?>);" class="btn btn-danger" title="Hapus Anggota">
@@ -147,10 +150,15 @@
                         <label class="col-md-3 control-label">NIDN</label>
                         <div class="col-md-6">
                             <div class="input-group input-group-icon">
-                                <span class="input-group-addon">
-                                    <span class="icon"><i class="fa fa-chevron-circle-right"></i></span>
-                                </span>
-                                <input type="text" name="nip_dn" id="nip_dn" class="form-control" placeholder="NIDN" value="<?php echo @$c_pkm->nip_dn;?>" <?php echo $c_daftar ? 'readonly':'';?>>
+                                <!--<input type="text" name="nip_dn" id="nip_dn" class="form-control" placeholder="NIDN" value="<?php // echo @$c_pkm->nip_dn;?>" <?php // echo $c_daftar ? 'readonly':'';?>>-->
+                                <select data-plugin-selectTwo onchange="show_dosen(this.value);" name="nip_dn" id="nip_dn" class="form-control populate" placeholder="NIDN / Nama Dosen" <?php echo $c_daftar ? 'disabled':'';?> required>
+                                    <option value=""><?php echo $c_daftar ? @$c_pkm->nip_dn.' | '.@$c_pkm->nama_dosen:'';?></option>
+                                    <optgroup label="NIDN | Nama Dosen">
+                                        <?php if($dosen){ foreach($dosen as $rec){ ?>
+                                            <option value="<?php echo @$rec->nip_dosen;?>" <?php if(@$c_pkm->nip_dn==@$rec->nip_dosen){echo 'selected';}?>><?php echo @$rec->nip_dosen;?> | <?php echo @$rec->nama_dosen;?></option>
+                                        <?php }} ?>
+                                    </optgroup>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -192,35 +200,61 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 control-label">Abstrak</label>
+                        <div class="col-md-9">
+                            <?php if($c_daftar){ ?>
+                            <?php echo @$c_pkm->abstrak;?>
+                            <?php } else { ?>
+                            <textarea class="summernote" data-plugin-summernote data-plugin-options='{ "height": 180, "codemirror": { "theme": "ambiance" } }' name="abstrak"><?php echo @$c_pkm->abstrak;?></textarea>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-3 control-label">Bidang Kegiatan PKM</label>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="input-group input-group-icon">
-                                <span class="input-group-addon">
-                                    <span class="icon"><i class="fa fa-chevron-circle-right"></i></span>
-                                </span>
-                                <input type="text" name="bidang" id="bidang" class="form-control" placeholder="Bidang Kegiatan PKM" value="<?php echo @$c_pkm->bidang;?>" <?php echo $c_daftar ? 'readonly':'';?> required>
+                                <select data-plugin-selectTwo name="bidang_pkm" id="bidang_pkm" class="form-control populate"  placeholder="Bidang PKM" <?php echo $c_daftar ? 'disabled':'';?>>
+                                    <option value=""></option>
+                                    <optgroup label="Pilih Bidang PKM">
+                                        <option value="PKM-P" <?php echo @$c_pkm->bidang_pkm=='PKM-P' ? 'selected' : '';?>>PKM-P</option>
+                                        <option value="PKM-K" <?php echo @$c_pkm->bidang_pkm=='PKM-K' ? 'selected' : '';?>>PKM-K</option>
+                                        <option value="PKM-M" <?php echo @$c_pkm->bidang_pkm=='PKM-M' ? 'selected' : '';?>>PKM-M</option>
+                                        <option value="PKM-T" <?php echo @$c_pkm->bidang_pkm=='PKM-T' ? 'selected' : '';?>>PKM-T</option>
+                                        <option value="PKM-KC" <?php echo @$c_pkm->bidang_pkm=='PKM-KC' ? 'selected' : '';?>>PKM-KC</option>
+                                        <option value="PKM-GT" <?php echo @$c_pkm->bidang_pkm=='PKM-GT' ? 'selected' : '';?>>PKM-GT</option>
+                                        <option value="PKM-AI" <?php echo @$c_pkm->bidang_pkm=='PKM-AI' ? 'selected' : '';?>>PKM-AI</option>
+                                    </optgroup>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Dana Hibah PKM</label>
-                        <div class="col-md-6">
+                        <label class="col-md-3 control-label">Kelompok Bidang Ilmu</label>
+                        <div class="col-md-4">
                             <div class="input-group input-group-icon">
-                                <span class="input-group-addon">
-                                    <span class="icon"><i class="fa fa-chevron-circle-right"></i></span>
-                                </span>
-                                <input type="text" name="d_hibah" id="d_hibah" class="form-control" placeholder="Dana Hibah PKM" value="<?php echo @$c_pkm->d_hibah;?>" <?php echo $c_daftar ? 'readonly':'';?>>
+                                <select data-plugin-selectTwo name="bidang_ilmu" id="bidang_ilmu" class="form-control populate" placeholder="Bidang Ilmu" <?php echo $c_daftar ? 'disabled':'';?>>
+                                    <option value=""></option>
+                                    <optgroup label="Pilih Bidang Ilmu">
+                                        <option value="Bidang Kesehatan" <?php echo @$c_pkm->bidang_ilmu=='Bidang Kesehatan' ? 'selected' : '';?>>Bidang Kesehatan</option>
+                                        <option value="Bidang MIPA" <?php echo @$c_pkm->bidang_ilmu=='Bidang MIPA' ? 'selected' : '';?>>Bidang MIPA</option>
+                                        <option value="Bidang Sosial Ekonomi" <?php echo @$c_pkm->bidang_ilmu=='Bidang Sosial Ekonomi' ? 'selected' : '';?>>Bidang Sosial Ekonomi</option>
+                                        <option value="Bidang Pendidikan" <?php echo @$c_pkm->bidang_ilmu=='Bidang Pendidikan' ? 'selected' : '';?>>Bidang Pendidikan</option>
+                                        <option value="Bidang Pertanian" <?php echo @$c_pkm->bidang_ilmu=='Bidang Pertanian' ? 'selected' : '';?>>Bidang Pertanian</option>
+                                        <option value="Bidang Teknologi dan Rekayasa" <?php echo @$c_pkm->bidang_ilmu=='Bidang Teknologi dan Rekayasa' ? 'selected' : '';?>>Bidang Teknologi dan Rekayasa</option>
+                                        <option value="Bidang Humaniora" <?php echo @$c_pkm->bidang_ilmu=='Bidang Humaniora' ? 'selected' : '';?>>Bidang Humaniora</option>
+                                    </optgroup>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Dana Masyarakat PKM</label>
+                        <label class="col-md-3 control-label">Luaran yang diharapkan</label>
                         <div class="col-md-6">
                             <div class="input-group input-group-icon">
                                 <span class="input-group-addon">
                                     <span class="icon"><i class="fa fa-chevron-circle-right"></i></span>
                                 </span>
-                                <input type="text" name="d_mas" id="d_mas" class="form-control" placeholder="Dana Masyarakat PKM" value="<?php echo @$c_pkm->d_mas;?>" <?php echo $c_daftar ? 'readonly':'';?>>
+                                <input type="text" name="luaran" id="luaran" class="form-control" placeholder="Luaran yang diharapkan" value="<?php echo @$c_pkm->luaran;?>" <?php echo $c_daftar ? 'readonly':'';?>>
                             </div>
                         </div>
                     </div>
@@ -301,7 +335,7 @@
 </div>
 <script>
     $(document).ready(function () {
-        var max_fields = 9999999999; //maximum input boxes allowed
+        var max_fields = 10000000; //maximum input boxes allowed
         var wrapper = $(".input_fields_wrap"); //Fields wrapper
         var add_button = $(".add_field_button"); //Add button ID
         <?php if($edit){ ?>
@@ -309,29 +343,23 @@
         <?php }else{ ?>
             var x = 1; //initlal text box count
         <?php } ?>
+        loadJS = function(src) {
+            var jsLink = $("<script type='text/javascript' src='"+src+"'>");
+            $("head").append(jsLink); 
+        };
         $(add_button).click(function (e) { //on add input button click
             e.preventDefault();
             if (x < max_fields) { //max input box allowed
                 x++; //text box increment
-                $(wrapper).append('<div class="form-group" id="fd_' + x + '">\n\
-                      <label class="col-md-3 control-label">Anggota</label>\n\
-                           <div class="col-sm-8">\n\
-                            <div class="row">\n\
-                                <div class="col-sm-5">\n\
-                                    <input type="text" name="nim_anggota[]" class="form-control" placeholder="NIM">\n\
-                                </div>\n\
-                                <div class="visible-xs mb-md"></div>\n\
-                                <div class="col-sm-6">\n\
-                                    <input type="text" name="nama_anggota[]" class="form-control" placeholder="Nama">\n\
-                                </div>\n\
-                                <div class="col-sm-1">\n\
-                                    <button type="button" onclick="rm(' + x + ');" class="btn btn-danger" title="Hapus Anggota">\n\
-                                        <i class="fa fa-minus-circle"></i>\n\
-                                    </button>\n\
-                                </div>\n\
-                            </div>\n\
-                        </div>\n\
-                    </div>'); //add input box
+                $.ajax({
+                    type: 'POST',
+                    data: 'init='+x,
+                    url: "<?php echo base_url('pendaftaran_pkm/getFormAnggota'); ?>",
+                    success: function(data) {
+                        $(wrapper).append(data); //add input box
+                        $("#fd_select"+x).select2();
+                    }
+                });                                            
             }
         });
 
@@ -341,6 +369,21 @@
             x--;
         })
     });
+    function show_dosen(nidn){
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo base_url('pendaftaran_pkm/get_dosen'); ?>",
+            data: 'nidn='+nidn,
+            dataType: "json",
+            cache:false,
+            success: function(data) {
+                console.log(data);
+                $('#nama_dn').val(data.nama_dosen);
+                $('#email_dn').val(data.email_dosen);
+                $('#alamat_dn').val(data.alamat_dosen);
+            }
+        });
+    }
     function rm(id,param='') {
         <?php if($edit){ ?>
         $.ajax({

@@ -41,7 +41,7 @@
                                     <a href="<?php echo base_url('admin_master/master_mahasiswa/edit/'.encode(@$rec->id_mahasiswa));?>" title="Edit"class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <a href="<?php echo base_url('admin_master/master_mahasiswa/delete/'.encode(@$rec->id_mahasiswa));?>" title="Delete" class="btn btn-default btn-sm btn-default">
+                                    <a href="<?php echo base_url('admin_master/master_mahasiswa/delete/'.encode(@$rec->id_mahasiswa));?>" onclick="javascript:return confirm('Are you absolutely sure you want to delete?')" title="Delete" class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-trash-o"></i>
                                     </a>
                                 </td>

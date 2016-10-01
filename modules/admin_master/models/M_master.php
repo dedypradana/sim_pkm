@@ -6,7 +6,7 @@ class M_master extends CI_Model {
 
     function __construct() {
         parent::__construct();
-        $this->_table = 'master_admin';
+        $this->_table = 'admin';
     }
     
 }

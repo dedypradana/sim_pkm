@@ -10,40 +10,91 @@ class Pendaftaran_pkm extends MY_Controller {
     }
     public function index() {
         $data['title'] = 'Pendaftaran PKM';
-        $id = $this->admin['id'];
-        $c_pkm = $this->mp->check_pkm($id);
+        $nim = $this->admin['nim'];
+        $c_pkm = $this->mp->check_pkm($nim);
         if($c_pkm){
-            $c_anggota = $this->mp->check_anggota(@$c_pkm->id_daftar);
+            $data['pkm'] = $c_pkm;
+            switch ($c_pkm->acc_dosen){
+                case 0:
+                    $data['d_title'] = 'Validasi Dosen : Belum';
+                    $data['d_content'] = 'Mohon konfirmasi ke dosen untuk validasi berkas PKM<br><br> Klik kembali untuk tutup notifikasi';
+                    $data['d_warna'] = 'btn-info';
+                    $data['d_status'] = 'Belum';
+                    break;
+                case 1:
+                    $data['d_title'] = 'Validasi Dosen : Ditolak';
+                    $data['d_content'] = @$c_pkm->note_dosen.'<br><br> Klik kembali untuk tutup notifikasi';
+                    $data['d_warna'] = 'btn-warning';
+                    $data['d_status'] = 'Ditolak';
+                    break;
+                case 2:
+                    $data['d_title'] = 'Validasi Dosen : Diterima';
+                    $data['d_content'] = @$c_pkm->note_dosen.'<br><br> Klik kembali untuk tutup notifikasi';
+                    $data['d_warna'] = 'btn-success';
+                    $data['d_status'] = 'Diterima';
+                    break;
+                default:
+                    $data['d_warna'] = 'btn-info';
+                    $data['d_status'] = 'Belum';
+                    break;
+            }
+            switch ($c_pkm->acc_admin){
+                case 0:
+                    $data['a_title'] = 'Validasi CIC Student Center : Belum';
+                    $data['a_content'] = 'Mohon konfirmasi ke CIC Student Center untuk validasi berkas PKM<br><br> Klik kembali untuk tutup notifikasi';
+                    $data['a_warna'] = 'btn-info';
+                    $data['a_status'] = 'Belum';
+                    break;
+                case 1:
+                    $data['a_title'] = 'Validasi CIC Student Center : Ditolak';
+                    $data['a_content'] = @$c_pkm->note_admin.'<br><br> Klik kembali untuk tutup notifikasi';
+                    $data['a_warna'] = 'btn-warning';
+                    $data['a_status'] = 'Ditolak';
+                    break;
+                case 2:
+                    $data['a_title'] = 'Validasi CIC Student Center : Diterima';
+                    $data['a_content'] = @$c_pkm->note_admin.'<br><br> Klik kembali untuk tutup notifikasi';
+                    $data['a_warna'] = 'btn-success';
+                    $data['a_status'] = 'Diterima';
+                    break;
+                default:
+                    $data['a_warna'] = 'btn-info';
+                    $data['a_status'] = 'Belum';
+                    break;
+            }
         }else{
             redirect('pendaftaran_pkm/view');
         }
-        $data['pkm'] = $c_pkm;
-        $data['anggota'] = $c_anggota;
         $this->templates->admin('list', $data);
     }
     public function view() {
         $data['title'] = 'Pendaftaran PKM';
-        $id = $this->admin['id'];
-        $c_pkm = $this->mp->check_pkm($id);
+        $nim = $this->admin['nim'];
+        $c_pkm = $this->mp->check_pkm($nim);
+//        print_r($c_pkm);exit;
+        $c_mhs = $this->mp->check_mhs($nim);
         $data['c_daftar'] = FALSE;
         $data['edit'] = FALSE;
+        $data['dosen'] = $this->mp->get_dosen();
         if($c_pkm){
             $c_anggota = $this->mp->check_anggota(@$c_pkm->id_daftar);
             $data['c_pkm'] = $c_pkm;
             $data['c_anggota'] = $c_anggota;
             $data['c_daftar'] = TRUE;
         }else{
-            $data['c_pkm'] = '';
+            $data['c_pkm'] = $c_mhs;
         }
         $this->templates->admin('index', $data);
     }
     
-    public function edit($id='') {
-        $id = decode($id);
+    public function edit($nim='') {
+        $nim = decode($nim);
         $data['title'] = 'Pendaftaran PKM';
         $data['c_daftar'] = FALSE;
         $data['edit'] = TRUE;
-        $c_pkm = $this->mp->check_pkm($id);
+        $data['mhs'] = $this->get_mahasiswa();
+        $data['dosen'] = $this->getAllDosen();
+        $c_pkm = $this->mp->check_pkm($nim);
         $c_anggota = $this->mp->check_anggota(@$c_pkm->id_daftar);
         $data['c_pkm'] = $c_pkm;
         $data['c_anggota'] = $c_anggota;
@@ -60,6 +111,21 @@ class Pendaftaran_pkm extends MY_Controller {
         $id_map = $this->input->post('id_map');
         $delete = $this->mp->delAnggota($id_map);
         return TRUE;
+    }
+    
+    public function get_dosen() {
+        $nidn = $this->input->post('nidn');
+        $dosen = $this->mp->get_dosen($nidn);
+        echo json_encode($dosen[0]);
+    }
+    public function get_mahasiswa() {
+        $nim = $this->admin['nim'];
+        $mhs = $this->mp->get_mhs($nim);
+        return $mhs;
+    }
+    public function getAllDosen() {
+        $dsn = $this->mp->get_dosen();
+        return $dsn;
     }
     
     public function deleteFile(){
@@ -115,15 +181,14 @@ class Pendaftaran_pkm extends MY_Controller {
         $this->form_validation->set_rules('telp', 'Telephone', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('nim_anggota[]', 'NIM Anggota', 'required|trim');
-        $this->form_validation->set_rules('nama_anggota[]', 'Nama Anggota', 'required|trim');
         $this->form_validation->set_rules('nip_dn', 'NIDN', 'trim');
         $this->form_validation->set_rules('nama_dn', 'Nama Dosen', 'required|trim');
         $this->form_validation->set_rules('email_dn', 'Email Dosen', 'required|trim|valid_email');
         $this->form_validation->set_rules('alamat_dn', 'Alamat Dosen', 'required|trim');
         $this->form_validation->set_rules('judul', 'Judul', 'required|trim');
-        $this->form_validation->set_rules('bidang', 'Bidang Kegiatan PKM', 'required|trim');
-        $this->form_validation->set_rules('d_hibah', 'Dana Hibah PKM', 'trim');
-        $this->form_validation->set_rules('d_mas', 'Dana Masyarakat PKM', 'trim');
+        $this->form_validation->set_rules('bidang_pkm', 'Bidang Kegiatan PKM', 'required|trim');
+        $this->form_validation->set_rules('bidang_ilmu', 'Bidang Ilmu', 'required|trim');
+        $this->form_validation->set_rules('luaran', 'Luaran dana yang diharapkan', 'trim');
         if (empty($_FILES['u_berkas']['name']) && $ber==''){
             $this->form_validation->set_rules('u_berkas','Berkas PKM','required');
         }
@@ -164,15 +229,13 @@ class Pendaftaran_pkm extends MY_Controller {
         $this->form_validation->set_rules('telp', 'Telephone', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('nim_anggota[]', 'NIM Anggota', 'required|trim');
-        $this->form_validation->set_rules('nama_anggota[]', 'Nama Anggota', 'required|trim');
         $this->form_validation->set_rules('nip_dn', 'NIDN', 'trim');
         $this->form_validation->set_rules('nama_dn', 'Nama Dosen', 'required|trim');
         $this->form_validation->set_rules('email_dn', 'Email Dosen', 'required|trim|valid_email');
         $this->form_validation->set_rules('alamat_dn', 'Alamat Dosen', 'required|trim');
         $this->form_validation->set_rules('judul', 'Judul', 'required|trim');
-        $this->form_validation->set_rules('bidang', 'Bidang Kegiatan PKM', 'required|trim');
-        $this->form_validation->set_rules('d_hibah', 'Dana Hibah PKM', 'trim');
-        $this->form_validation->set_rules('d_mas', 'Dana Masyarakat PKM', 'trim');
+        $this->form_validation->set_rules('bidang_pkm', 'Bidang Kegiatan PKM', 'required|trim');
+        $this->form_validation->set_rules('bidang_ilmu', 'Bidang Ilmu PKM', 'trim');
         if (empty($_FILES['u_berkas']['name'])){
             $this->form_validation->set_rules('u_berkas','Berkas PKM','required');
         }
@@ -242,6 +305,38 @@ class Pendaftaran_pkm extends MY_Controller {
             $notif = $this->upload->data();
         }
         return $notif;
+    }
+    
+    public function getFormAnggota() {
+        $init = $this->input->post('init');
+        $nim = $this->admin['nim'];
+        $mhs = $this->mp->get_mhs($nim);
+        $opt = '';
+        foreach($mhs as $rec){
+            $opt .= '<option value="'.$rec->nim_mahasiswa.'">'.$rec->nim_mahasiswa.' | '.$rec->nama_mahasiswa.'</option>';
+        }
+        $str = '<div id"formAnggota"></div><div class="form-group" id="fd_'.$init.'">
+                      <label class="col-md-3 control-label">Anggota</label>
+                           <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <select data-plugin-selectTwo id="fd_select'.$init.'" name="nim_anggota[]" class="form-control populate"  placeholder="Nim / Nama Anggota">
+                                        <option value=""></option>
+                                        <optgroup label="Pilih Nim / Nama Anggota">
+                                            '.$opt.'
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="button" onclick="rm('.$init.');" class="btn btn-danger" title="Hapus Anggota">
+                                        <i class="fa fa-minus-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>';
+        echo $str;
+        
     }
 
 }

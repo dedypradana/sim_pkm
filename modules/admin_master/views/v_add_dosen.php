@@ -18,9 +18,9 @@
             <div class="panel-body">
                 <?php echo @$this->session->flashdata('flash_data'); ?>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">NIP </label>
+                    <label class="col-sm-3 control-label">NIDN </label>
                     <div class="col-sm-9">
-                        <input type="text" name="nip_dosen" class="form-control" value="<?php echo @$dosen->nip_dosen;?>" placeholder="NIP"/>
+                        <input type="text" name="nip_dosen" class="form-control" value="<?php echo @$dosen->nip_dosen;?>" placeholder="NIDN"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -45,12 +45,21 @@
                     <label class="col-sm-3 control-label">Gender <span class="required">*</span></label>
                     <div class="col-sm-9">
                         <div class="radio-custom radio-primary">
+<<<<<<< HEAD
                             <input id="Laki-laki" name="jenis_kelamin_dosen" <?php if(@$dosen->jenis_kelamin_dosen=='Laki-laki'){echo'checked';}?> type="radio" value="Laki-laki" required />
                             <label for="Laki-laki">Laki - Laki</label>
                         </div>
                         <div class="radio-custom radio-primary">
                             <input id="Perempuan" name="jenis_kelamin_dosen" <?php if(@$dosen->jenis_kelamin_dosen=='Perempuan'){echo'checked';}?> type="radio" value="Perempuan" />
                             <label for="Perempuan">Perempuan</label>
+=======
+                            <input id="L" name="jenis_kelamin_dosen" <?php if(@$dosen->jenis_kelamin_dosen=='Laki-laki'){echo'checked';}?> type="radio" value="Laki-laki" required />
+                            <label for="L">Laki - Laki</label>
+                        </div>
+                        <div class="radio-custom radio-primary">
+                            <input id="P" name="jenis_kelamin_dosen" <?php if(@$dosen->jenis_kelamin_dosen=='Perempuan'){echo'checked';}?> type="radio" value="Perempuan" />
+                            <label for="P">Perempuan</label>
+>>>>>>> 9e8959c76130fe686c58d1a44d6c9674f80f66bb
                         </div>
                     </div>
                 </div>

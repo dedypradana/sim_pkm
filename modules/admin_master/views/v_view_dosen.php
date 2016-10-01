@@ -24,7 +24,7 @@
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>NIP</td>
+                                <td>NIDN</td>
                                 <td>:</td>
                                 <td><?php echo @$dosen->nip_dosen;?></td>
                             </tr>

@@ -34,7 +34,8 @@ class Dashboard extends CI_Controller {
                 }else{
                     $sesi = array(
                         'id'  => $check['id_dosen'],
-                        'nama'=> $check['nama_dosen'],
+                        'nidn' => $check['nip_dosen'],
+                        'nama' => $check['nama_dosen'],
                         'username' => $check['username'],
                         'tipe' => 'dosen'
                     );
