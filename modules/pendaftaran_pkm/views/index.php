@@ -24,7 +24,7 @@
                 <div class="panel-body">
                     <?php echo @$this->session->flashdata('flash_data'); ?>
                     <div class="alert alert-info">
-                        Masukkan NIM, Nama, Jurusan, Telephone, Email, Alamat <strong>Data Ketua PKM</strong>.
+                        Masukkan <strong>Data Ketua PKM</strong>.
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Nim *</label>
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <div class="alert alert-info">
-                        Masukkan NIM, Nama <strong>Data Anggota PKM</strong>.
+                        Masukkan <strong>Data Anggota PKM</strong>.
                     </div>
                     <?php if($c_daftar){ ?>
                     <div class="form-group">
@@ -144,7 +144,7 @@
                     </div>
                     <?php } ?>
                     <div class="alert alert-info">
-                        Masukkan NIDN, Nama, Alamat <strong>Data Dosen</strong>.
+                        Masukkan <strong>Data Dosen</strong>.
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">NIDN</label>

@@ -7,7 +7,7 @@
                     <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
                 </div>
 
-                <h2 class="panel-title">Pekan Kreatif Mahasiswa</h2>
+                <h2 class="panel-title">Program Kreatifitas Mahasiswa</h2>
             </header>
             <div class="panel-body">
                 <?php echo @$this->session->flashdata('flash_data'); ?>

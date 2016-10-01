@@ -27,19 +27,12 @@
                             <span>Pendaftaran PKM</span>
                         </a>
                     </li>
-<<<<<<< HEAD
-                    <li class="<?php if($this->s1=='list_pkm'){echo 'nav-active';}?>">
-                        <a href="<?php echo base_url('list_pkm');?>">
-                            <i class="fa fa-list" aria-hidden="true"></i>
-                            <span>Pilih PKM Sebagai Anggota</span>
-=======
                     <?php } ?>
                     <?php if($this->admin['tipe']=='dosen'){ ?>
                     <li class="<?php if($this->s1=='validasi_pkm'){echo 'nav-active';}?>">
                         <a href="<?php echo base_url('validasi_pkm');?>">
                             <i class="fa fa-download" aria-hidden="true"></i>
                             <span>Validasi Berkas PKM</span>
->>>>>>> 9e8959c76130fe686c58d1a44d6c9674f80f66bb
                         </a>
                     </li>
                     <?php } ?>
@@ -77,7 +70,7 @@
                     <li class="<?php if($this->s1=='search_berkas'){echo 'nav-active';}?>">
                         <a href="<?php echo base_url('search_berkas');?>">
                             <i class="fa fa-list" aria-hidden="true"></i>
-                            <span>Search Berkas PKM</span>
+                            <span>List Berkas PKM</span>
                         </a>
                     </li>
                 </ul>
