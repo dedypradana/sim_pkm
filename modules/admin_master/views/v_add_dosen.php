@@ -90,6 +90,18 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-3 control-label">Status Dosen </label>
+                    <div class="col-sm-9">
+                        <input type="text" name="status_dosen" class="form-control" value="<?php echo @$dosen->status_dosen;?>" placeholder="Status Dosen"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Status Ikatan Kerja Dosen </label>
+                    <div class="col-sm-9">
+                        <input type="text" name="status_ikatan_kerja_dosen" class="form-control" value="<?php echo @$dosen->status_ikatan_kerja_dosen;?>" placeholder="Status Ikatan Kerja Dosen"/>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-md-3 control-label" for="textareaDefault">Alamat</label>
                     <div class="col-md-9">
                         <textarea class="form-control" name="alamat_dosen" rows="3" id="textareaDefault"><?php echo @$dosen->alamat_dosen;?></textarea>

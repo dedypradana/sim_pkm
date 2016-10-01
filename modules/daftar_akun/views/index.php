@@ -84,12 +84,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Program Studi</label>
-                        <div class="col-sm-9">
-                            <input type="text" name="program_studi_mahasiswa" class="form-control" value="<?php echo @$mhs->program_studi_mahasiswa; ?>" placeholder="Program Studi"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-md-3 control-label" for="textareaDefault">Alamat</label>
                         <div class="col-md-9">
                             <textarea class="form-control" name="alamat_mahasiswa" rows="3" id="textareaDefault"><?php echo @$mhs->alamat_mahasiswa; ?></textarea>
