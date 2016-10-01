@@ -27,12 +27,6 @@
                             <span>Pendaftaran PKM</span>
                         </a>
                     </li>
-                    <li class="<?php if($this->s1=='list_pkm'){echo 'nav-active';}?>">
-                        <a href="<?php echo base_url('list_pkm');?>">
-                            <i class="fa fa-list" aria-hidden="true"></i>
-                            <span>Search Berkas PKM</span>
-                        </a>
-                    </li>
                     <?php } ?>
                     <?php if($this->admin['tipe']=='dosen'){ ?>
                     <li class="<?php if($this->s1=='validasi_pkm'){echo 'nav-active';}?>">
@@ -73,6 +67,12 @@
                         </a>
                     </li>
                     <?php } ?>
+                    <li class="<?php if($this->s1=='search_berkas'){echo 'nav-active';}?>">
+                        <a href="<?php echo base_url('search_berkas');?>">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            <span>Search Berkas PKM</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
 

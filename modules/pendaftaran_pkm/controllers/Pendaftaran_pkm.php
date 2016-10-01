@@ -16,14 +16,20 @@ class Pendaftaran_pkm extends MY_Controller {
             $data['pkm'] = $c_pkm;
             switch ($c_pkm->acc_dosen){
                 case 0:
+                    $data['d_title'] = 'Validasi Dosen : Belum';
+                    $data['d_content'] = 'Mohon konfirmasi ke dosen untuk validasi berkas PKM<br><br> Klik kembali untuk tutup notifikasi';
                     $data['d_warna'] = 'btn-info';
                     $data['d_status'] = 'Belum';
                     break;
                 case 1:
+                    $data['d_title'] = 'Validasi Dosen : Ditolak';
+                    $data['d_content'] = @$c_pkm->note_dosen.'<br><br> Klik kembali untuk tutup notifikasi';
                     $data['d_warna'] = 'btn-warning';
                     $data['d_status'] = 'Ditolak';
                     break;
                 case 2:
+                    $data['d_title'] = 'Validasi Dosen : Diterima';
+                    $data['d_content'] = @$c_pkm->note_dosen.'<br><br> Klik kembali untuk tutup notifikasi';
                     $data['d_warna'] = 'btn-success';
                     $data['d_status'] = 'Diterima';
                     break;
@@ -34,14 +40,20 @@ class Pendaftaran_pkm extends MY_Controller {
             }
             switch ($c_pkm->acc_admin){
                 case 0:
+                    $data['a_title'] = 'Validasi CIC Student Center : Belum';
+                    $data['a_content'] = 'Mohon konfirmasi ke CIC Student Center untuk validasi berkas PKM<br><br> Klik kembali untuk tutup notifikasi';
                     $data['a_warna'] = 'btn-info';
                     $data['a_status'] = 'Belum';
                     break;
                 case 1:
+                    $data['a_title'] = 'Validasi CIC Student Center : Ditolak';
+                    $data['a_content'] = @$c_pkm->note_admin.'<br><br> Klik kembali untuk tutup notifikasi';
                     $data['a_warna'] = 'btn-warning';
                     $data['a_status'] = 'Ditolak';
                     break;
                 case 2:
+                    $data['a_title'] = 'Validasi CIC Student Center : Diterima';
+                    $data['a_content'] = @$c_pkm->note_admin.'<br><br> Klik kembali untuk tutup notifikasi';
                     $data['a_warna'] = 'btn-success';
                     $data['a_status'] = 'Diterima';
                     break;

@@ -32,7 +32,6 @@ class Admin_dashboard extends MY_Controller {
         $id = decode($id_daftar);
         $data['pkm'] = $this->md->get_pkm($id);
         $data['anggota'] = $this->md->get_anggota($id);
-//        print_r($data);exit;
         $this->templates->admin('detail',@$data);
     }
 

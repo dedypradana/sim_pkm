@@ -22,6 +22,7 @@ class M_validasi extends CI_Model {
         $this->db->select('*');
         $this->db->from('pendaftaran_pkm');
         $this->db->join('mahasiswa', 'mahasiswa.nim_mahasiswa = pendaftaran_pkm.nim');
+        $this->db->where('pendaftaran_pkm.acc_dosen', 2);
         $this->db->where('pendaftaran_pkm.acc_admin', 0);
         $this->db->order_by('pendaftaran_pkm.id_daftar', 'DESC');
         $query = $this->db->get();

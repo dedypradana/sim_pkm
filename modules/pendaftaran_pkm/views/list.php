@@ -18,8 +18,22 @@
                 <div class="alert alert-info fade in nomargin center">
                     <?php if($pkm){ ?>
                     <p>
-                        <button class="btn <?php echo @$d_warna;?> mt-xs mb-xs" style="cursor: default" type="button">Validasi Dosen : <?php echo @$d_status;?></button>
-                        <button class="btn <?php echo @$a_warna;?> mt-xs mb-xs" style="cursor: default" type="button">Validasi CIC Student Center : <?php echo @$a_status;?></button>
+                        <button 
+                            data-toggle="popover" 
+                            data-container="body" 
+                            data-placement="top" 
+                            data-html="true"
+                            title="<b><?php echo @$d_title;?></b>" 
+                            data-content="<?php echo html_entity_decode(@$d_content);?>"
+                            class="btn <?php echo @$d_warna;?> mt-xs mb-xs" type="button">Validasi Dosen : <?php echo @$d_status;?></button>
+                        <button 
+                            data-toggle="popover" 
+                            data-container="body" 
+                            data-placement="top" 
+                            data-html="true"
+                            title="<b><?php echo @$a_title;?><b>" 
+                            data-content="<?php echo html_entity_decode(@$a_content);?>"
+                            class="btn <?php echo @$a_warna;?> mt-xs mb-xs" type="button">Validasi CIC Student Center : <?php echo @$a_status;?></button>
                     </p>
                     <?php }else{ ?>
                     <p>
