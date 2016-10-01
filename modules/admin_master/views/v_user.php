@@ -3,8 +3,6 @@
         <section class="panel panel-tertiary" id="panel-3" data-portlet-item>
             <header class="panel-heading portlet-handler">
                 <div class="panel-actions">
-                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
-                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
                 </div>
 
                 <h2 class="panel-title">Data Administrator</h2>
