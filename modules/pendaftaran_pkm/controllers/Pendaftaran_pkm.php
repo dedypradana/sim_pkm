@@ -71,7 +71,6 @@ class Pendaftaran_pkm extends MY_Controller {
         $data['title'] = 'Pendaftaran PKM';
         $nim = $this->admin['nim'];
         $c_pkm = $this->mp->check_pkm($nim);
-//        print_r($c_pkm);exit;
         $c_mhs = $this->mp->check_mhs($nim);
         $data['c_daftar'] = FALSE;
         $data['edit'] = FALSE;
@@ -172,7 +171,7 @@ class Pendaftaran_pkm extends MY_Controller {
                 break;
         }
     }
-    public function editPendaftaran(){
+    public function editPendaftaran($admin=''){
         $ber = $this->input->post('t_u_berkas');
         $lam = $this->input->post('t_u_lampiran');
         $this->form_validation->set_rules('nim', 'NIM', 'required|trim');
@@ -213,16 +212,21 @@ class Pendaftaran_pkm extends MY_Controller {
                 $lampiran = $this->lets_upload_lampiran();
                 $param['u_lampiran'] = $berkas['file_name'];
             }
+            $param['admin'] = $admin;
             $insert = $this->mp->doUpdate($param);
             if($insert == TRUE){
                 $this->session->set_flashdata('flash_data', succ_msg('Pendaftaran PKM berhasil Diupdate ..'));
             }else{
                 $this->session->set_flashdata('flash_data', err_msg('Something went wrong, Please try again later.'));
             }
-            redirect('pendaftaran_pkm');
+            if($admin){
+                redirect('admin_master/berkas_pkm');
+            }else{
+                redirect('pendaftaran_pkm');
+            }
         }
     }
-    public function savePendaftaran() {
+    public function savePendaftaran($admin='') {
         $this->form_validation->set_rules('nim', 'NIM', 'required|trim');
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('jurusan', 'Jurusan', 'required|trim');
@@ -252,13 +256,18 @@ class Pendaftaran_pkm extends MY_Controller {
             $lampiran = $this->lets_upload_lampiran();
             $param['u_berkas'] = $berkas['file_name'];
             $param['u_lampiran'] = $lampiran['file_name'];
+            $param['admin'] = $admin;
             $insert = $this->mp->doInsert($param);
             if($insert == TRUE){
                 $this->session->set_flashdata('flash_data', succ_msg('Pendaftaran PKM berhasil disimpan..'));
             }else{
                 $this->session->set_flashdata('flash_data', err_msg('Something went wrong, Please try again later.'));
             }
-            redirect('pendaftaran_pkm');
+            if($admin){
+                redirect('admin_master/berkas_pkm');
+            }else{
+                redirect('pendaftaran_pkm');
+            }
         }
     }
 
@@ -307,9 +316,14 @@ class Pendaftaran_pkm extends MY_Controller {
         return $notif;
     }
     
-    public function getFormAnggota() {
+    public function getFormAnggota($nim='') {
         $init = $this->input->post('init');
-        $nim = $this->admin['nim'];
+        if($nim){
+            $nim = $nim;
+        }else{
+            $nim = $this->admin['nim'];
+        }
+        
         $mhs = $this->mp->get_mhs($nim);
         $opt = '';
         foreach($mhs as $rec){

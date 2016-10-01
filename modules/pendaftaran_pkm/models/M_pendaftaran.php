@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class M_pendaftaran extends CI_Model {
     
     public function check_pkm($nim) {
-        $this->db->select('*, mahasiswa.nama_mahasiswa nama, mahasiswa.handphone_mahasiswa telp, mahasiswa.email_mahasiswa email, mahasiswa.alamat_mahasiswa alamat, dosen.nama_dosen nama_dn, dosen.email_dosen email_dn, dosen.alamat_dosen alamat_dn');
+        $this->db->select('*,mahasiswa.id_mahasiswa id_mahasiswa, mahasiswa.nama_mahasiswa nama, mahasiswa.handphone_mahasiswa telp, mahasiswa.email_mahasiswa email, mahasiswa.alamat_mahasiswa alamat, dosen.nama_dosen nama_dn, dosen.email_dosen email_dn, dosen.alamat_dosen alamat_dn');
         $this->db->from('pendaftaran_pkm');
         $this->db->join('mahasiswa', 'mahasiswa.nim_mahasiswa = pendaftaran_pkm.nim', 'left');
         $this->db->join('dosen', 'dosen.nip_dosen = pendaftaran_pkm.nip_dn', 'left');
@@ -40,7 +40,7 @@ class M_pendaftaran extends CI_Model {
         if($return){return $return;}else{return false;}
     }
     public function check_mhs($id){
-        $this->db->select('nim_mahasiswa, jurusan, nama_mahasiswa nama, handphone_mahasiswa telp,email_mahasiswa email, alamat_mahasiswa alamat');
+        $this->db->select('id_mahasiswa, nim_mahasiswa, jurusan, nama_mahasiswa nama, handphone_mahasiswa telp,email_mahasiswa email, alamat_mahasiswa alamat');
         $this->db->from('mahasiswa');
         $this->db->where('nim_mahasiswa',$id);
         $res = $this->db->get();
@@ -96,8 +96,13 @@ class M_pendaftaran extends CI_Model {
     }
     public function doUpdate($param) {
         $status = $this->get_status($param['id_daftar']);
-        if($status->acc_dosen==2){$acc_d = 2;}else{$acc_d = 0;}
-        if($status->acc_admin==2){$acc_a = 2;}else{$acc_a = 0;}
+        if($param['admin']=='admin'){
+            $acc_d = $param['acc_dosen'];
+            $acc_a = $param['acc_admin'];
+        }else{
+            if($status->acc_dosen==2){$acc_d = 2;}else{$acc_d = 0;}
+            if($status->acc_admin==2){$acc_a = 2;}else{$acc_a = 0;}
+        }
         $data = array(
             'nim'       => $param['nim'],
             'nip_dn'    => $param['nip_dn'],
@@ -133,6 +138,13 @@ class M_pendaftaran extends CI_Model {
     }
     
     public function doInsert($param) {
+        if($param['admin']=='admin'){
+            $acc_dosen = $param['acc_dosen'];
+            $acc_admin = $param['acc_admin'];
+        }else{
+            $acc_dosen = 0;
+            $acc_admin = 0;
+        }
         $data = array(
             'id_mahasiswa'=> $this->session->userdata('admin_login')['id'],
             'nim'       => $param['nim'],
@@ -144,8 +156,8 @@ class M_pendaftaran extends CI_Model {
             'luaran'    => $param['luaran'],
             'u_berkas'  => $param['u_berkas'],
             'u_lampiran'=> $param['u_lampiran'],
-            'acc_dosen'=> 0,
-            'acc_admin'=> 0,
+            'acc_dosen'=> $acc_dosen,
+            'acc_admin'=> $acc_admin,
             'created'   => date('Y-m-d H:i:s'),
         );
         $this->db->insert('pendaftaran_pkm', $data);

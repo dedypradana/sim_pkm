@@ -45,7 +45,7 @@
                 <div class="row">
                     <div class="col-sm-12" style="text-align: right;">
                         <a href="<?php echo base_url('pendaftaran_pkm/view'); ?>" class="btn btn-primary">Detail Data PKM</a>
-                        <a href="<?php echo base_url('pendaftaran_pkm/edit/' . encode($this->admin['nim'])); ?>" class="btn btn-dark">Edit Data PKM</a>
+                        <a href="<?php echo base_url('pendaftaran_pkm/edit/'.encode($this->admin['nim'])); ?>" class="btn btn-dark">Edit Data PKM</a>
                     </div>
                 </div>
             </footer>

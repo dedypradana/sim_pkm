@@ -7,6 +7,8 @@ class Admin_master extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('M_master', 'mm');
+        $this->load->model("admin_dashboard/m_dashboard",'md');
+        $this->load->model("pendaftaran_pkm/m_pendaftaran",'mp');
         $this->load->library('grocery_CRUD');
     }
 
@@ -28,8 +30,97 @@ class Admin_master extends MY_Controller {
         $data['theme'] = 'yellow';
         $this->templates->admin('v_informasi', @$data);
     }
+    function del_berkas($file=''){
+        $path = 'assets/uploads/'.$file;
+        unlink($path);
+    }
+    public function berkas_pkm($action='',$id=''){
+        $data['title'] = 'Berkas PKM';
+        $data['berkas'] = $this->mm->get_all_pkm();
+        $data['mhs'] = $this->mm->get_all_mhs();
+        switch ($action) {
+            case 'add':
+                $data = $this->add_pkm($id);
+                $this->templates->admin('form_pkm',@$data);
+                break;
+            case 'view':
+                $id = decode($id);
+                $data['pkm'] = $this->md->get_pkm($id);
+                $data['anggota'] = $this->md->get_anggota($id);
+                $this->templates->admin('detail',@$data);
+                break;
+            case 'edit':
+                $data = $this->edit_pkm($id);
+                $this->templates->admin('form_pkm',@$data);
+                break;
+            case 'delete':
+                $id = decode($id);
+                $pkm = $this->md->get_pkm($id);
+                $delete_pkm = $this->mgb->delete('pendaftaran_pkm',array('id_daftar' => $id));
+                $delete_agt = $this->mgb->delete('map_anggota',array('id_daftar' => $id));
+                $this->del_berkas(@$pkm->u_berkas);
+                $this->del_berkas(@$pkm->u_lampiran);
+                if($delete_pkm || $delete_agt){
+                    $this->session->set_flashdata('flash_data', succ_msg('Berkas PKM Successfuly Deleted'));
+		}else{
+                    $this->session->set_flashdata('flash_data', err_msg('Something Wrong. Check Again Later'));
+		}
+		redirect('admin_master/berkas_pkm');
+                break;
+            default:
+                $this->templates->admin('v_berkas', @$data);
+                break;
+        }
+    }
+    public function edit_pkm($nim=''){
+        $nim = decode($nim);
+        $data['title'] = 'Pendaftaran PKM';
+        $data['c_daftar'] = FALSE;
+        $data['edit'] = TRUE;
+        $data['mhs'] = $this->get_mahasiswa($nim);
+        $data['dosen'] = $this->getAllDosen();
+        $c_pkm = $this->mp->check_pkm($nim);
+        $c_anggota = $this->mp->check_anggota(@$c_pkm->id_daftar);
+        $data['c_pkm'] = $c_pkm;
+        $data['c_anggota'] = $c_anggota;
+        return $data;
+    }
+    public function getAllDosen() {
+        $dsn = $this->mp->get_dosen();
+        return $dsn;
+    }
+    public function get_mahasiswa($nim) {
+        $mhs = $this->mp->get_mhs($nim);
+        return $mhs;
+    }
+    function add_nim(){
+        $nim = $this->input->post('nim');
+        if($nim==''){
+            $this->session->set_flashdata('flash_data', err_msg('Nim atau Nama mahasiswa belum diisi..'));
+            redirect('admin_master/berkas_pkm');
+        }else{
+            redirect('admin_master/berkas_pkm/add/'.$nim);
+        }
+    }
+    public function add_pkm($nim) {
+        $data['title'] = 'Pendaftaran PKM';
+        $c_pkm = $this->mp->check_pkm($nim);
+        $c_mhs = $this->mp->check_mhs($nim);
+        $data['c_daftar'] = FALSE;
+        $data['edit'] = FALSE;
+        $data['dosen'] = $this->mp->get_dosen();
+        if($c_pkm){
+            $c_anggota = $this->mp->check_anggota(@$c_pkm->id_daftar);
+            $data['c_pkm'] = $c_pkm;
+            $data['c_anggota'] = $c_anggota;
+            $data['c_daftar'] = TRUE;
+        }else{
+            $data['c_pkm'] = $c_mhs;
+        }
+        return $data;
+    }
     public function master_administrator($action='',$id='') {
-        $data['title'] = 'Master Administrator';
+        $data['title'] = 'Administrator';
         $data['administrator'] = $this->mgb->find('admin','','','','id_admin')->result();
         switch ($action){
             case 'add':
@@ -61,7 +152,7 @@ class Admin_master extends MY_Controller {
     }
     public function master_dosen($action='',$id='') {
         $id = decode($id);
-        $data['title'] = 'Master Dosen';
+        $data['title'] = 'Dosen';
         $data['dosen'] = $this->mgb->find('dosen','','','','id_dosen');
         $data['sesi'] = $this->session->userdata('admin_login');
         if($data['dosen']){
@@ -97,7 +188,7 @@ class Admin_master extends MY_Controller {
     }
     public function master_mahasiswa($action='',$id='') {
         $id = decode($id);
-        $data['title'] = 'Master Mahasiswa';
+        $data['title'] = 'Mahasiswa';
         $data['mhs'] = $this->mgb->find('mahasiswa','','','','id_mahasiswa');
         $data['sesi'] = $this->session->userdata('admin_login');
         if($data['mhs']){

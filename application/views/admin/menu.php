@@ -40,7 +40,7 @@
                     <li class="nav-parent <?php if($this->s1=='admin_master'){echo 'nav-expanded nav-active';}?>">
                         <a>
                             <i class="fa fa-database" aria-hidden="true"></i>
-                            <span>Master User</span>
+                            <span>Kelola Data</span>
                         </a>
                         <ul class="nav nav-children">
                             <li <?php if($this->s2=='master_administrator'){echo 'class="nav-active"';}?>>
@@ -56,6 +56,11 @@
                             <li <?php if($this->s2=='master_mahasiswa'){echo 'class="nav-active"';}?>>
                                 <a href="<?php echo base_url('admin_master/master_mahasiswa');?>">
                                     Mahasiswa
+                                </a>
+                            </li>
+                            <li <?php if($this->s2=='berkas_pkm'){echo 'class="nav-active"';}?>>
+                                <a href="<?php echo base_url('admin_master/berkas_pkm');?>">
+                                    Berkas PKM
                                 </a>
                             </li>
                         </ul>

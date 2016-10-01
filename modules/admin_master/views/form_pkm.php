@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12" data-plugin-portlet id="portlet-1">
         <?php if($edit){ ?>
-        <form enctype="multipart/form-data" accept-charset="utf-8" id="form" action="<?php echo base_url('pendaftaran_pkm/editPendaftaran');?>" class="form-horizontal form-bordered" method="post">
+        <form enctype="multipart/form-data" accept-charset="utf-8" id="form" action="<?php echo base_url('pendaftaran_pkm/editPendaftaran/admin');?>" class="form-horizontal form-bordered" method="post">
             <input type="hidden" name="id_daftar" value="<?php echo @$c_pkm->id_daftar;?>">    
             <?php if(@$c_pkm->u_berkas){ ?>
             <div id="e_u_berkas"><input type="hidden" name="t_u_berkas" value="<?php echo @$c_pkm->u_berkas;?>"></div>    
@@ -10,13 +10,12 @@
             <div id="e_u_lampiran"><input type="hidden" name="t_u_lampiran" value="<?php echo @$c_pkm->u_lampiran;?>"></div>    
             <?php } ?>
         <?php }else{ ?>
-        <form enctype="multipart/form-data" accept-charset="utf-8" id="form" action="<?php echo base_url('pendaftaran_pkm/savePendaftaran');?>" class="form-horizontal form-bordered" method="post">
+        <form enctype="multipart/form-data" accept-charset="utf-8" id="form" action="<?php echo base_url('pendaftaran_pkm/savePendaftaran/admin');?>" class="form-horizontal form-bordered" method="post">
         <?php } ?>
             <section class="panel panel-primary" data-portlet-item>
                 <header class="panel-heading portlet-handler">
                     <div class="panel-actions">
                     </div>
-
                     <h2 class="panel-title">Form Pendaftaran PKM</h2>
                 </header>
                 <div class="panel-body">
@@ -31,7 +30,7 @@
                                 <span class="input-group-addon">
                                     <span class="icon"><i class="fa fa-chevron-circle-right"></i></span>
                                 </span>
-                                <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM" value="<?php echo @$this->admin['nim'];?>" readonly>
+                                <input type="text" name="nim" id="nim" class="form-control" placeholder="NIM" value="<?php echo @$c_pkm->nim_mahasiswa;?>" readonly>
                             </div>
                         </div>
                     </div>
@@ -314,12 +313,42 @@
                             <?php } ?>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Status Acc Dosen</label>
+                        <div class="col-md-4">
+                            <div class="input-group input-group-icon">
+                                <select data-plugin-selectTwo name="acc_dosen" id="acc_dosen" class="form-control populate"  placeholder="Status Acc Dosen" <?php echo $c_daftar ? 'disabled':'';?>>
+                                    <option value=""></option>
+                                    <optgroup label="Pilih Status Dosen">
+                                        <option value="0" <?php echo @$c_pkm->acc_dosen==0 ? 'selected' : '';?>>Belum</option>
+                                        <option value="1" <?php echo @$c_pkm->acc_dosen==1 ? 'selected' : '';?>>Ditolak</option>
+                                        <option value="2" <?php echo @$c_pkm->acc_dosen==2 ? 'selected' : '';?>>Diterima</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Status Acc Admin</label>
+                        <div class="col-md-4">
+                            <div class="input-group input-group-icon">
+                                <select data-plugin-selectTwo name="acc_admin" id="acc_admin" class="form-control populate"  placeholder="Status Acc Dosen" <?php echo $c_daftar ? 'disabled':'';?>>
+                                    <option value=""></option>
+                                    <optgroup label="Pilih Status Admin">
+                                        <option value="0" <?php echo @$c_pkm->acc_admin==0 ? 'selected' : '';?>>Belum</option>
+                                        <option value="1" <?php echo @$c_pkm->acc_admin==1 ? 'selected' : '';?>>Ditolak</option>
+                                        <option value="2" <?php echo @$c_pkm->acc_admin==2 ? 'selected' : '';?>>Diterima</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <footer class="panel-footer">
                     <div class="row">
                         <div class="col-sm-9 col-sm-offset-3">
                             <?php if($c_daftar){ ?>
-                            <a href="<?php echo base_url('pendaftaran_pkm/edit/'.encode($this->admin['nim']));?>" class="btn btn-primary">Edit PKM</a>
+                            <a href="<?php echo base_url('pendaftaran_pkm/edit/'.encode($this->admin['id']));?>" class="btn btn-primary">Edit PKM</a>
                             <?php }else{ ?>
                             <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Submit PKM</button>
                             <button onclick="history.go(-1);" class="btn btn-warning">Cancel</button>
@@ -352,7 +381,7 @@
                 $.ajax({
                     type: 'POST',
                     data: 'init='+x,
-                    url: "<?php echo base_url('pendaftaran_pkm/getFormAnggota'); ?>",
+                    url: "<?php echo base_url('pendaftaran_pkm/getFormAnggota/'.@$c_pkm->nim_mahasiswa); ?>",
                     success: function(data) {
                         $(wrapper).append(data); //add input box
                         $("#fd_select"+x).select2();
