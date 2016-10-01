@@ -49,21 +49,12 @@
                     <label class="col-sm-3 control-label">Gender <span class="required">*</span></label>
                     <div class="col-sm-9">
                         <div class="radio-custom radio-primary">
-<<<<<<< HEAD
                             <input id="Laki-laki" name="jenis_kelamin_mahasiswa" <?php if(@$mhs->jenis_kelamin_mahasiswa=='Laki-laki'){echo'checked';}?> type="radio" value="Laki-laki" required />
                             <label for="Laki-laki">Laki - Laki</label>
                         </div>
                         <div class="radio-custom radio-primary">
                             <input id="Perempuan" name="jenis_kelamin_mahasiswa" <?php if(@$mhs->jenis_kelamin_mahasiswa=='Perempuan'){echo'checked';}?> type="radio" value="Perempuan" />
                             <label for="Perempuan">Perempuan</label>
-=======
-                            <input id="L" name="jenis_kelamin_mahasiswa" <?php if(@$mhs->jenis_kelamin_mahasiswa=='Laki-laki'){echo'checked';}?> type="radio" value="Laki-laki" required />
-                            <label for="L">Laki - Laki</label>
-                        </div>
-                        <div class="radio-custom radio-primary">
-                            <input id="P" name="jenis_kelamin_mahasiswa" <?php if(@$mhs->jenis_kelamin_mahasiswa=='Perempuan'){echo'checked';}?> type="radio" value="Perempuan" />
-                            <label for="P">Perempuan</label>
->>>>>>> 9e8959c76130fe686c58d1a44d6c9674f80f66bb
                         </div>
                     </div>
                 </div>
@@ -93,15 +84,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-<<<<<<< HEAD
-                    <label class="col-sm-3 control-label">Program Studi </label>
-                    <div class="col-sm-9">
-                        <input type="text" name="program_studi_mahasiswa" class="form-control" value="<?php echo @$mhs->program_studi_mahasiswa;?>" placeholder="Strata 1"/>
-                    </div>
-                </div>
-                <div class="form-group">
-=======
->>>>>>> 9e8959c76130fe686c58d1a44d6c9674f80f66bb
                     <label class="col-md-3 control-label" for="textareaDefault">Alamat</label>
                     <div class="col-md-9">
                         <textarea class="form-control" name="alamat_mahasiswa" rows="3" id="textareaDefault"><?php echo @$mhs->alamat_mahasiswa;?></textarea>
