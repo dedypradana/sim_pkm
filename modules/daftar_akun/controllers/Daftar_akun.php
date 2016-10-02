@@ -17,8 +17,8 @@ class Daftar_akun extends CI_Controller {
     }
     
     public function doSaveMahasiswa(){
-        $this->form_validation->set_rules('nim_mahasiswa', 'NIM', 'trim|is_unique[mahasiswa.nim_mahasiswa]');
-        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[mahasiswa.username]');
+        $this->form_validation->set_rules('nim_mahasiswa', 'NIM', 'required|is_unique[mahasiswa.nim_mahasiswa]');
+        $this->form_validation->set_rules('username', 'Username', 'required|is_unique[mahasiswa.username]');
         $this->form_validation->set_rules('passwd', 'Password', 'required');
         $this->form_validation->set_rules('nama_mahasiswa', 'Nama Lengkap', 'required');
         $this->form_validation->set_rules('jenis_kelamin_mahasiswa', 'Gender', 'required');
@@ -33,6 +33,7 @@ class Daftar_akun extends CI_Controller {
             $param['password'] = encode($passwd);
             $param['status'] = 1;
             unset($param['passwd']);
+//            print_r($param);exit;
             $insert = $this->mgb->write('mahasiswa',$param);
             if($insert == TRUE){
                 $this->session->set_flashdata('flash_data', succ_msg('Akun berhasil disimpan, silahkan login dengan username dan password anda..'));
