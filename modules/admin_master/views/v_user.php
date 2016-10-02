@@ -37,7 +37,9 @@
                                     <a href="<?php echo base_url('admin_master/master_administrator/edit/'.@$rec->id_admin);?>" title="Edit"class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <a href="<?php echo base_url('admin_master/master_administrator/delete/'.@$rec->id_admin);?>" title="Delete" class="btn btn-default btn-sm btn-default">
+                                    <a href="<?php echo base_url('admin_master/master_administrator/delete/'.@$rec->id_admin);?>" 
+                                    onclick="javascript:return confirm('Are you absolutely sure you want to delete?')" 
+                                    title="Delete" class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-trash-o"></i>
                                     </a>
                                 </td>

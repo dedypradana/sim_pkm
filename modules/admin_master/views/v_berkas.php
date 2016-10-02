@@ -33,7 +33,9 @@
                                     <a href="<?php echo base_url('admin_master/berkas_pkm/edit/'.encode(@$rec->nim)); ?>" title="Edit" class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <a href="<?php echo base_url('admin_master/berkas_pkm/delete/'.encode(@$rec->id_daftar));?>" title="Delete" class="btn btn-default btn-sm btn-default">
+                                    <a href="<?php echo base_url('admin_master/berkas_pkm/delete/'.encode(@$rec->id_daftar));?>" 
+                                    onclick="javascript:return confirm('Are you absolutely sure you want to delete?')" 
+                                    title="Delete" class="btn btn-default btn-sm btn-default">
                                         <i class="fa fa-trash-o"></i>
                                     </a>
                                 </td>
