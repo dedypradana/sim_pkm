@@ -23,7 +23,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($administrator as $rec){ ?>
+                        <?php if($administrator)foreach($administrator as $rec){ ?>
                             <tr class="gradeX">
                                 <td><?php echo @$rec->nip_admin;?></td>
                                 <td><?php echo @$rec->nama_admin;?></td>
