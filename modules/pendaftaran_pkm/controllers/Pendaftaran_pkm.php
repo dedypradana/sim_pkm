@@ -117,6 +117,12 @@ class Pendaftaran_pkm extends MY_Controller {
         $dosen = $this->mp->get_dosen($nidn);
         echo json_encode($dosen[0]);
     }
+    public function getAnggota() {
+        $nim = $this->admin['nim'];
+        $param = $this->input->post('nim');
+        $mhs = $this->mp->get_mhs($nim,$param);
+        echo json_encode($mhs[0]);
+    }
     public function get_mahasiswa() {
         $nim = $this->admin['nim'];
         $mhs = $this->mp->get_mhs($nim);
@@ -318,30 +324,17 @@ class Pendaftaran_pkm extends MY_Controller {
     
     public function getFormAnggota($nim='') {
         $init = $this->input->post('init');
-        if($nim){
-            $nim = $nim;
-        }else{
-            $nim = $this->admin['nim'];
-        }
-        
-        $mhs = $this->mp->get_mhs($nim);
-        $opt = '';
-        foreach($mhs as $rec){
-            $opt .= '<option value="'.$rec->nim_mahasiswa.'">'.$rec->nim_mahasiswa.' | '.$rec->nama_mahasiswa.'</option>';
-        }
         $str = '<div id"formAnggota"></div><div class="form-group" id="fd_'.$init.'">
                       <label class="col-md-3 control-label">Anggota</label>
                            <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-sm-9">
-                                    <select data-plugin-selectTwo id="fd_select'.$init.'" name="nim_anggota[]" class="form-control populate"  placeholder="Nim / Nama Anggota">
-                                        <option value=""></option>
-                                        <optgroup label="Pilih Nim / Nama Anggota">
-                                            '.$opt.'
-                                        </optgroup>
-                                    </select>
+                                <div class="col-sm-5">
+                                    <input type="text" name="nim_anggota[]" placeholder="Nim Anggota" id="fd_select'.$init.'" class="form-control">
                                 </div>
-                                <div class="col-sm-1">
+                                <div class="col-sm-4">
+                                    <button type="button" onclick="search('.$init.');" class="btn btn-info" title="Search">
+                                        <i class="fa fa-search"></i> Search
+                                    </button>
                                     <button type="button" onclick="rm('.$init.');" class="btn btn-danger" title="Hapus Anggota">
                                         <i class="fa fa-minus-circle"></i>
                                     </button>

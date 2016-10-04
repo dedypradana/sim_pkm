@@ -111,17 +111,13 @@
                       <label class="col-md-3 control-label">Anggota</label>
                            <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-sm-9">
-                                    <select data-plugin-selectTwo name="nim_anggota[]" class="form-control populate"  placeholder="Nim / Nama Anggota">
-                                        <option value=""></option>
-                                        <optgroup label="Pilih Nim / Nama Anggota">
-                                            <?php if($mhs){foreach($mhs as $m){ ?>
-                                            <option value="<?php echo @$m->nim_mahasiswa; ?>" <?php if(@$m->nim_mahasiswa==@$rec->nim_mahasiswa){echo 'selected';}?>><?php echo @$m->nim_mahasiswa; ?> | <?php echo @$m->nama_mahasiswa; ?></option>
-                                            <?php }} ?>
-                                        </optgroup>
-                                    </select>
+                                <div class="col-sm-5">
+                                    <input type="text" name="nim_anggota[]" value="<?php echo @$rec->nim_mahasiswa;?>" placeholder="Nim Anggota" id="fd_select<?php echo $init;?>" class="form-control">
                                 </div>
-                                <div class="col-sm-1">
+                                <div class="col-sm-4">
+                                    <button type="button" onclick="search(<?php echo $init;?>);" class="btn btn-info" title="Search">
+                                        <i class="fa fa-search"></i> Search
+                                    </button>
                                     <button type="button" onclick="rm(<?php echo $init;?>,<?php echo @$rec->id_map;?>);" class="btn btn-danger" title="Hapus Anggota">
                                         <i class="fa fa-minus-circle"></i>
                                     </button>
@@ -348,16 +344,16 @@
         $(add_button).click(function (e) { //on add input button click
             e.preventDefault();
             if (x < max_fields) { //max input box allowed
-                x++; //text box increment
+                x++;  //text box increment
+                
                 $.ajax({
                     type: 'POST',
                     data: 'init='+x,
                     url: "<?php echo base_url('pendaftaran_pkm/getFormAnggota'); ?>",
                     success: function(data) {
                         $(wrapper).append(data); //add input box
-                        $("#fd_select"+x).select2();
                     }
-                });                                            
+                });
             }
         });
 
@@ -394,6 +390,55 @@
         });
         <?php } ?>
         $('#fd_' + id).remove();
+    }
+    var stack_bar_top = {"dir1": "down", "dir2": "right", "push": "top", "spacing1": 0, "spacing2": 0};
+    var stack_bar_bottom = {"dir1": "up", "dir2": "right", "spacing1": 0, "spacing2": 0};
+    function search(init=''){
+        var nim = $('#fd_select'+init).val();
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo base_url('pendaftaran_pkm/getAnggota'); ?>",
+            data: 'nim='+nim,
+            dataType: "json",
+            cache:false,
+            success: function(data) {
+                if(data){
+                    var notice = new PNotify({
+                        title: 'Nim Berhasil Ditemukan',
+                        text: 'NIM : '+data.nim_mahasiswa+'<br>Nama : '+data.nama_mahasiswa+'.<br>Jurusan : '+data.jurusan,
+                        delay: 3000,
+                        type: 'success',
+                        addclass: 'stack-bar-bottom',
+                        stack: stack_bar_bottom,
+                        opacity: 0.9,
+                        width: "70%"
+                    });
+                    $('#fd_select'+init).attr('style', 'border-color: #5cb85c;');
+                }else{
+                    var notice = new PNotify({
+                        title: 'Notification',
+                        text: 'NIM Mahasiswa Tidak Ditemukan atau NIM Sudah Menjadi Ketua PKM...',
+                        delay: 3000,
+                        addclass: 'stack-bar-bottom',
+                        stack: stack_bar_bottom,
+                        opacity: 0.9,
+                        width: "70%"
+                    });
+                    $('#fd_select'+init).val('');
+                    $('#fd_select'+init).attr('style', 'border-color: #d9534f;');
+                }
+            }
+        });
+//        var notice = new PNotify({
+//            title: 'Notification',
+//            text: 'Some notification text.<br>asdfasdfasd',
+//            delay: 3000,
+//            addclass: 'stack-bar-bottom',
+//            stack: stack_bar_bottom,
+//            opacity: 0.9,
+//            width: "70%"
+//        });
+//        $('#fd_select'+init).attr('style', 'border-color: #f00;');
     }
     function doDelete(field='',param=''){
         $.ajax({

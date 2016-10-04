@@ -22,9 +22,18 @@ class M_pendaftaran extends CI_Model {
         $return = $res->result();
         if($return){return $return;}else{return false;}
     }
-    public function get_mhs($nim='') {
-        $this->db->select('nim_mahasiswa, nama_mahasiswa');
+    public function get_agt($nim='') {
+        $this->db->select('*');
         $this->db->from('mahasiswa');
+        $this->db->where('nim_mahasiswa',$nim);
+        $res = $this->db->get();
+        $return = $res->result();
+        if($return){return $return;}else{return false;}
+    }
+    public function get_mhs($nim='',$param='') {
+        $this->db->select('nim_mahasiswa, nama_mahasiswa, jurusan');
+        $this->db->from('mahasiswa');
+        $this->db->where('nim_mahasiswa', $param);
         $this->db->where_not_in('nim_mahasiswa', $nim);
         $res = $this->db->get();
         $return = $res->result();
